@@ -151,10 +151,12 @@ An excellent primer is [Adam Warski's post on "How iBeacons work?"](http://www.w
 
 The ["What is the iBeacon Bluetooth Profile"](http://stackoverflow.com/questions/18906988/what-is-the-ibeacon-bluetooth-profile) thread on Stack Overflow is also very informative.
 
-In order to turn your OSX Mavericks box into an iBeacon emitter, see Matthew Robinsons' [BeaconOX](https://github.com/mttrb/BeaconOSX). It's also the reason this project exists. 
+In order to turn your OSX Mavericks box into an iBeacon emitter, see Matthew Robinsons' [BeaconOX](https://github.com/mttrb/BeaconOSX).  
 
 
 
-## Misc.
+## Credits
+
+Portions of *HGBeacon* were derived from a *BLCBeaconAdvertisementData*, by Matthew Robinson and part of [BeaconOX](https://github.com/mttrb/BeaconOSX).
 
 The "Radar" icon image the utility uses was created by [ricaodomaia](http://openclipart.org/user-detail/ricardomaia) and downloaded from [openclipart.org](http://openclipart.org/detail/122719/radar-by-ricardomaia) 

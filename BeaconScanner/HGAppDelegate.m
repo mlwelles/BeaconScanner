@@ -4,8 +4,7 @@
 //
 //  Created by HUGE | Mike Welles on 4/4/14.
 //  Copyright (c) 2014 Huge, Inc. All rights reserved.
-//
-
+// 
 #import "HGAppDelegate.h"
 #import "HGDateValueTransformer.h"
 @implementation HGAppDelegate

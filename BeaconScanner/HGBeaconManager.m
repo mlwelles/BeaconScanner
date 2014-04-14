@@ -5,13 +5,13 @@
 //  Created by HUGE | Mike Welles on 2/27/14.
 //  Copyright (c) 2014 Huge, Inc. All rights reserved.
 //
-
 #import "HGBeaconManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import <IOBluetooth/IOBluetooth.h>
 #import "HGBeacon.h"
 #import "libextobjc/EXTScope.h"
 #import "BlocksKit.h"
+
 @interface HGBeaconManager () <CBPeripheralManagerDelegate, CLLocationManagerDelegate,CBCentralManagerDelegate>
 @property (strong,nonatomic) CBCentralManager *centralManager;
 @property (nonatomic, strong) dispatch_queue_t managerQueue;
