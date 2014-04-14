@@ -3,7 +3,7 @@ BeaconScanner
 
 iBeacon Scanning Utility for OSX
 
-![Beacon Scanner screen shot](Images/ScreenShot.png)
+![Beacon Scanner screen shot](Docs/ScreenShot.png)
 
 A notible absence when apple added iBeacon support to iOS was a lack of a client API and utilities for the Mac desktop.  This application attempts to remedy this, allowing an easy way to scan for beacons from a desktop as well as providing an underlying the source framework for adding iBeacon client support to any other OSX project.
 
@@ -61,7 +61,7 @@ In the application source, the class *HGBeaconViewController* provides a good ex
 
 The iBeacon protocol is relatively simple.  It is a 25 byte payload that is set as the manufacturer data field of a bluetooth LE advertisment.  The format of this message is as follows:
 
-![iBeacon Manufacturer Data Format](Images/iBeaconManufacturerDataFormat.png)
+![iBeacon Manufacturer Data Format](Docs/iBeaconManufacturerDataFormat.png)
 
 In order to receive nearby bluetooth advertisements *HGBeaconManager* instantiances a Core Bluetooth Central manager, and assigns it a dedicated dispatch queue:
 
