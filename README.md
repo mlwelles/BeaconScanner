@@ -5,29 +5,30 @@ iBeacon Scanning Utility for OSX
 
 ![Alt text](ScreenShot.png)
 
-When apple released iBeacon support in iOS 7, there was a deserved amount of exitement.   One oversight, however, was the lack of client API support for OSX.  Developing and testing iBeacons has required using an iOS device.  This utility was authored to allow scanning for nearby beacons on the desktop.   
+One oversight when apple introduced iBeacons in iOS was a lack of API support for OSX.  Because of this, developing and testing for iBeacons has generally required using an iOS device.  This application allows doing so with on desktop, and the source code provides a means to add iBeacon support any other OSX project, as well.
 
+###Installing
 
+To install without building from source, first [download the prebuilt archive](Builds/BeaconScanner.zip).  Double click the zip to extract, and then double click again to run. 
 
-##Using the Utility
+Once you start the app it'll automatically begin scanning for bluetooth devices.  Any beacons within range will automatically appear and it will continuously update as long as it remains scanning.
 
-Usage is simple.  Start the app, and it'll be scanning for bluetooth devices.  Any iBeacons that are detected while will appear.  Columns can be sorted by whatever attribute is most important. 
-
-
-##Building the Source
+###Building
 
 Building the app requires [cocoapods](http://cocoapods.org).  Once installed, launch Terminal.app and in the project directory, run "pod install".  When it completes, open the *BeaconScanner.xcworkspace* file that it create in Xcode.  The app should then build and run successfully. 
 
-##Reusing the Source
+###Adding beacon support to your own project
 
-To add iBeacon support to your own desktop applications, at least until the a proper cocoapod is made available, just copy the following four files into your project:  
+To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
 
 - BCBeaconManager.h
 - BCBeaconManager.m
 - BCBeacon.h
 - BCBeacon.m
 
-The beacon manager announces the detection of beacons to the subscribers of a [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it makes available.  All that's needed to detect beacons is to first tell the manager to start scanning, and then to setup a subscription to this beacon signal:
+The beacon manager announces the beacons it detects to the subscribers of the [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it provides for this.  
+
+All that's needed for a client to detect beacons is to subscribe to this signal:
 
 	[[[HGBeaconManager] sharedBeaconManager] startScanning];
 	
@@ -55,6 +56,6 @@ In the application source, the class *HGBeaconViewController* provides a good ex
 
 
 
-## The Icon
+### The Icon
 
 The "Radar" image in the icon was created by [ricaodomaia](http://openclipart.org/user-detail/ricardomaia) and downloaded from [openclipart.org](http://openclipart.org/detail/122719/radar-by-ricardomaia) 
