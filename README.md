@@ -19,42 +19,6 @@ Once you start the app it'll automatically begin scanning for bluetooth devices.
 Building the app requires [cocoapods](http://cocoapods.org).  Once installed, launch Terminal.app and in the project directory, run "pod install".  When it completes, open the *BeaconScanner.xcworkspace* file that it create in Xcode.  The app should then build and run successfully. 
 
 
-##Adding Beacon Detection to Your Own Project
-
-To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
-
-- *HGBeaconManager.h*
-- *HGBeaconManager.m*
-- *HGBeacon.h*
-- *HGBeacon.m*
-
-The beacon manager announces the beacons it detects to the subscribers of the [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it provides for this.  
-
-All that's needed for a client to detect beacons is to subscribe to this signal:
-
-	[[[HGBeaconManager] sharedBeaconManager] startScanning];
-	
-	RACSignal *beaconSignal = [[HGBeaconManager sharedBeaconManager] beaconSignal];
-	[beaconSignal subscribeNext:^(HGBeacon *detectedBeacon) {
-		NSLog(@"iBeacon Detected: %@", detectedBeacon);
-	}];
-
-
-To limit this subscription to just those beacons that are relevant to your application, a filtered signal can be composed from the raw feed, like so:
-
-
-	NSUUID *applicationUUID = [[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
-
-	RACSignal *filteredSignal = [[[HGBeaconManager sharedBeaconManager] beaconSignal] filter:^(HGBeacon *beacon) {
-		return [beaconSignal.proximityUUID isEqual:applicationUUID];
-	}];
-	
-
-Note that as long as any given beacon is in range, it will be announced periodically via the subscription.  
-
-It's best to use these updates to maintain a seperate list of nearby active beacons, and then periodically purge from this list those that have not been heard from in a while in order to ensure that only active beacons are tracked.   
-
-In the application source, the class *HGBeaconViewController* provides a good example of how to do this. 
 
 ##How It Works
 
@@ -144,8 +108,42 @@ Following are the relevant stanzas where this happens:
 	}
 
 
+##Adding Beacon Detection to Your Own Project
 
-That's really it.   For more detailed information on the contents of the payload, see the articles below.
+To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
+
+- *HGBeaconManager.h*
+- *HGBeaconManager.m*
+- *HGBeacon.h*
+- *HGBeacon.m*
+
+The beacon manager announces the beacons it detects to the subscribers of the [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it provides for this.  
+
+All that's needed for a client to detect beacons is to subscribe to this signal:
+
+	[[[HGBeaconManager] sharedBeaconManager] startScanning];
+	
+	RACSignal *beaconSignal = [[HGBeaconManager sharedBeaconManager] beaconSignal];
+	[beaconSignal subscribeNext:^(HGBeacon *detectedBeacon) {
+		NSLog(@"iBeacon Detected: %@", detectedBeacon);
+	}];
+
+
+To limit this subscription to just those beacons that are relevant to your application, a filtered signal can be composed from the raw feed, like so:
+
+
+	NSUUID *applicationUUID = [[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
+
+	RACSignal *filteredSignal = [[[HGBeaconManager sharedBeaconManager] beaconSignal] filter:^(HGBeacon *beacon) {
+		return [beaconSignal.proximityUUID isEqual:applicationUUID];
+	}];
+	
+
+Note that as long as any given beacon is in range, it will be announced periodically via the subscription.  
+
+It's best to use these updates to maintain a seperate list of nearby active beacons, and then periodically purge from this list those that have not been heard from in a while in order to ensure that only active beacons are tracked.   
+
+In the application source, the class *HGBeaconViewController* provides a good example of how to do this. 
 
 ## Learn More
 
