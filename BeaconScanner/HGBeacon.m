@@ -9,6 +9,7 @@
 #import <IOBluetooth/IOBluetooth.h>
 #import "stdint.h"
 #import "EXTScope.h"
+NSString *const HGBeaconAdvertismentManufacturerDataKey = @"kCBAdvDataAppleBeaconKey";
 @implementation HGBeacon
 
 - (id)initWithProximityUUID:(NSUUID *)proximityUUID major:(NSNumber *)major minor:(NSNumber *)minor measuredPower:(NSNumber *)power {
@@ -95,8 +96,7 @@
 }
 
 - (NSDictionary *)advertismentDictionary {
-    NSString *beaconKey = @"kCBAdvDataAppleBeaconKey";
-    return [NSDictionary dictionaryWithObject:[self manufacturerAdvertismentData] forKey:beaconKey];
+    return [NSDictionary dictionaryWithObject:[self manufacturerAdvertismentData] forKey:HGBeaconAdvertismentManufacturerDataKey];
 }
 
 -(BOOL)isEqualToBeacon:(HGBeacon *)otherBeacon {
