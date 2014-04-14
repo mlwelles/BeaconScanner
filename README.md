@@ -56,7 +56,7 @@ It's best to use these updates to maintain a seperate list of nearby active beac
 
 In the application source, the class *HGBeaconViewController* provides a good example of how to do this. 
 
-##How it works
+##How It Works
 
 
 The iBeacon protocol is relatively simple.  It is a 25 byte payload that is set as the manufacturer data field of a bluetooth LE advertisment.  The format of this message is as follows:
@@ -157,6 +157,6 @@ In order to turn your OSX Mavericks box into an iBeacon emitter, see Matthew Rob
 
 
 
-### Addendum
+## Misc.
 
 The "Radar" icon image the utility uses was created by [ricaodomaia](http://openclipart.org/user-detail/ricardomaia) and downloaded from [openclipart.org](http://openclipart.org/detail/122719/radar-by-ricardomaia) 
