@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ReactiveCocoa/ReactiveCocoa.h"
 @interface HGBeaconManager : NSObject
-@property (nonatomic, strong) NSArray *beacons;
 @property (nonatomic, readonly) RACSignal *beaconSignal;
 @property (nonatomic, readonly) BOOL scanning;
 -(void)startScanning;
