@@ -5,7 +5,7 @@ iBeacon Scanning Utility for OSX
 
 ![Alt text](ScreenShot.png)
 
-One oversight when apple introduced iBeacons in iOS was a lack of API support for OSX.  Because of this, developing and testing for iBeacons has generally required using an iOS device.  This application allows doing so with on desktop, and the source code provides a means to add iBeacon support any other OSX project, as well.
+A notible absense when apple added iBeacon support to iOS was a lack of an API and client utilities for OSX.  This application attempts to remedy this, allowing beacon scanning on the desktop, and the source framework provides a means to add iBeacon support any other OSX project.
 
 ###Installing
 
@@ -21,10 +21,10 @@ Building the app requires [cocoapods](http://cocoapods.org).  Once installed, la
 
 To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
 
-- BCBeaconManager.h
-- BCBeaconManager.m
-- BCBeacon.h
-- BCBeacon.m
+- *HGBeaconManager.h*
+- *HGBeaconManager.m*
+- *HGBeacon.h*
+- *HGBeacon.m*
 
 The beacon manager announces the beacons it detects to the subscribers of the [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it provides for this.  
 
@@ -34,7 +34,7 @@ All that's needed for a client to detect beacons is to subscribe to this signal:
 	
 	RACSignal *beaconSignal = [[HGBeaconManager sharedBeaconManager] beaconSignal];
 	[beaconSignal subscribeNext:^(HGBeacon *detectedBeacon) {
-		NSLog(@"iBeacon Detected: %@", )
+		NSLog(@"iBeacon Detected: %@", detectedBeacon);
 	}];
 
 
@@ -54,6 +54,10 @@ It's best to use these updates to maintain a seperate list of nearby active beac
 
 In the application source, the class *HGBeaconViewController* provides a good example of how to do this. 
 
+
+### See Also
+
+In order to turn your OSX Mavericks box into an iBeacon emitter, see Matthew Robinsons' [BeaconOX](https://github.com/mttrb/BeaconOSX). It's also the reason this project exists. 
 
 
 ### The Icon
