@@ -5,21 +5,21 @@ iBeacon Scanning Utility for OSX
 
 ![Beacon Scanner screen shot](Docs/ScreenShot.png)
 
-A notible absence when apple added iBeacon support to iOS was a lack of a client API and utilities for the Mac desktop.  This application attempts to remedy this, allowing an easy way to scan for beacons from a desktop as well as providing an underlying the source framework for adding iBeacon client support to any other OSX project.
+A notible absence when apple added iBeacon support to iOS was a lack of a client API and utilities for the Mac desktop.  Beacon Scanner is an attempt to remedy this, allowing an easy way to scan for beacons from a desktop as well as providing an underlying the source framework for adding iBeacon client support to any other OSX project.
 
 
-##How to install a prebuilt binary.
+##How to Install It
 
 To install without building from source, first [download the prebuilt archive](Builds/BeaconScanner.zip).  Double click the zip to extract, and then double click again to run. 
 
 Once you start the app it'll automatically begin scanning for bluetooth devices.  Any beacons within range will automatically appear and it will continuously update as long as it remains scanning.
 
-##How to build from source.
+##How to Build It
 
 Building the app requires [cocoapods](http://cocoapods.org).  Once installed, launch Terminal.app and in the project directory, run "pod install".  When it completes, open the *BeaconScanner.xcworkspace* file that it create in Xcode.  The app should then build and run successfully. 
 
 
-##How to add beacon support to your own project
+##Adding Beacon Detection to Your Own Project
 
 To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
 
@@ -147,7 +147,7 @@ Following are the relevant stanzas where this happens:
 
 That's really it.   For more detailed information on the contents of the payload, see the articles below.
 
-## See Also
+## Learn More
 
 An excellent primer is [Adam Warski's post on "How iBeacons work?"](http://www.warski.org/blog/2014/01/how-ibeacons-work/).
 
