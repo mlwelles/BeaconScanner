@@ -3,7 +3,7 @@ BeaconScanner
 
 iBeacon Scanning Utility for OSX
 
-![Alt text](ScreenShot.png)
+![Beacon Scanner screen shot](Images/ScreenShot.png)
 
 A notible absence when apple added iBeacon support to iOS was a lack of a client API and utilities for the Mac desktop.  This application attempts to remedy this, allowing an easy way to scan for beacons from a desktop as well as providing an underlying the source framework for adding iBeacon client support to any other OSX project.
 
@@ -88,9 +88,12 @@ In the callback, the beacon manager determines whether or not a detected periphe
 	    }
 	}
 
-The parsing of the advertisement data dictionary to determine if a peripheral is an iBeacon happens inside *HGBeacon*.  It first pulls the manufacturer data from the advertisement dictionary and then checks and parses this payload.  If it succeeds, it returns a beacon, if it fails, a *nil*. 
+The parsing of the advertisement data dictionary to determine if a peripheral is an iBeacon happens inside *HGBeacon*.  It first pulls the manufacturer data from the advertisement dictionary and then checks and parses this payload.  If it succeeds, it returns a beacon, if it fails, a *nil*.  It will regard as valid any manifacturer data payload where the bytes match the format in the image below:
+
+![iBeacon Manufacturer Data Format](Images/iBeaconManufacturerDataFormat.png)
 
 
+The code that parses and checks the received data against these expectations is in the following two methods:
 
 	+(HGBeacon *)beaconWithAdvertismentDataDictionary:(NSDictionary *)advertisementDataDictionary {
 	    NSData *data = (NSData *)[advertisementDataDictionary objectForKey:CBAdvertisementDataManufacturerDataKey];
@@ -110,7 +113,7 @@ The parsing of the advertisement data dictionary to determine if a peripheral is
 	    char uuidBytes[17] = {0};
 	    NSRange companyIDRange = NSMakeRange(0,2);
 	    [data getBytes:&companyIdentifier range:companyIDRange];
-	    if (companyIdentifier != 76) {
+	    if (companyIdentifier != 0x4C) {
 	        return nil;
 	    }
 	    NSRange dataTypeRange = NSMakeRange(2,1);

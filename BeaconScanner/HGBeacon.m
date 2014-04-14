@@ -47,7 +47,7 @@
 
     NSRange companyIDRange = NSMakeRange(0,2);
     [data getBytes:&companyIdentifier range:companyIDRange];
-    if (companyIdentifier != 76) {
+    if (companyIdentifier != 0x4C) {
         return nil;
     }
     NSRange dataTypeRange = NSMakeRange(2,1);
