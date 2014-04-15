@@ -5,18 +5,19 @@ iBeacon Scanning Utility for OSX
 
 ![Beacon Scanner screen shot](Docs/ScreenShot.png)
 
-A notible absence when apple added iBeacon support to iOS was a lack of a client API and utilities for the Mac desktop.  Beacon Scanner is an attempt to remedy this, allowing an easy way to scan for beacons from a desktop as well as providing an underlying the source framework for adding iBeacon client support to any other OSX project.
+A notable absence when Apple added iBeacon support to iOS was a lack of both a client API and any utilities for use on the Mac desktop. We authored this utility in an effort to help remedy this.
 
+It provides an easy way to scan for nearby beacons from your Mac. Additionally, the underlying source framework can be used to add iBeacon client support to any other OSX project. 
 
 ##How to Install It
 
-To install without building from source, first [download the prebuilt archive](Builds/BeaconScanner.zip).  Double click the zip to extract, and then double click again to run. 
+To install without building from source, first [download the prebuilt archive](https://github.com/mlwelles/BeaconScanner/blob/master/Builds/BeaconScanner.zip?raw=true).  Double click the zip to extract, and then double click again to run. 
 
 Once you start the app it'll automatically begin scanning for bluetooth devices.  Any beacons within range will automatically appear and it will continuously update as long as it remains scanning.
 
 ##How to Build It
 
-Building the app requires [cocoapods](http://cocoapods.org).  Once installed, launch Terminal.app and in the project directory, run "pod install".  When it completes, open the *BeaconScanner.xcworkspace* file that it create in Xcode.  The app should then build and run successfully. 
+Building the app requires [cocoapods](http://cocoapods.org).  Once installed, launch Terminal.app and in the project directory, run "pod install".  When it completes, open *BeaconScanner.xcworkspace*  in Xcode.  The app should then build and run successfully. 
 
 
 
@@ -41,7 +42,7 @@ It then asks the Bluetooth Central Manager to start scanning for peripherals:
 
 The options specify it should should execute a callback everytime it detects any given device. This is important for iBeacons, as their continued detection is the only way to determine if they're still in range. 
 
-In this delegate callback, the beacon manager determines whether or not a detected peripheral is an iBeacon by trying to parse the iBeacon message from the advertisement data dictionary recieved from the peripheral. If it succeeds it sends a *HGBeacon* object created from the message to its subscribers. 
+In this delegate callback, the beacon scanner determines whether or not a detected peripheral is an iBeacon by trying to parse the iBeacon message from the advertisement data dictionary recieved from the peripheral. If it succeeds it sends a *HGBeacon* object created from the message to its subscribers. 
 
 	- (void)centralManager:(CBCentralManager *)central
 	 didDiscoverPeripheral:(CBPeripheral *)peripheral
@@ -117,7 +118,7 @@ To add iBeacon support to your own desktop application (at least until the a pro
 - *HGBeacon.h*
 - *HGBeacon.m*
 
-The beacon manager announces the beacons it detects to the subscribers of the [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it provides for this.  
+The beacon scanner announces the beacons it detects to the subscribers of the [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) signal that it provides for this.  
 
 All that's needed for a client to detect beacons is to subscribe to this signal:
 
