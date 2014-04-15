@@ -14,17 +14,18 @@
 		677226A618FC3D2F00804FDA /* BeaconScanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6772269218FC3D2F00804FDA /* BeaconScanner-Info.plist */; };
 		677226A918FC3D2F00804FDA /* HGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269A18FC3D2F00804FDA /* HGAppDelegate.m */; };
 		677226AA18FC3D2F00804FDA /* HGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269C18FC3D2F00804FDA /* HGBeacon.m */; };
-		677226AB18FC3D2F00804FDA /* HGBeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269E18FC3D2F00804FDA /* HGBeaconManager.m */; };
+		677226AB18FC3D2F00804FDA /* HGBeaconScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */; };
 		677226AC18FC3D2F00804FDA /* HGBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677226A018FC3D2F00804FDA /* HGBeaconViewController.m */; };
 		677226AD18FC3D2F00804FDA /* HGDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 677226A218FC3D2F00804FDA /* HGDateValueTransformer.m */; };
 		677226AE18FC3D2F00804FDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 677226A318FC3D2F00804FDA /* Images.xcassets */; };
 		677226AF18FC3D2F00804FDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677226A418FC3D2F00804FDA /* main.m */; };
-		679835D218FC614900E2E6D5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679835D018FC614900E2E6D5 /* MainMenu.xib */; };
 		679835D718FC615D00E2E6D5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 679835D318FC615D00E2E6D5 /* Credits.rtf */; };
 		679835D818FC615D00E2E6D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 679835D518FC615D00E2E6D5 /* InfoPlist.strings */; };
-		679835DA18FC61A600E2E6D5 /* BeaconScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 679835D918FC61A600E2E6D5 /* BeaconScannerTests.m */; };
 		679835DF18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 679835DB18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist */; };
 		679835E318FC61D300E2E6D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 679835E118FC61D300E2E6D5 /* InfoPlist.strings */; };
+		679835E418FC623200E2E6D5 /* BeaconScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 679835D918FC61A600E2E6D5 /* BeaconScannerTests.m */; };
+		679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679835D018FC614900E2E6D5 /* MainMenu.xib */; };
+		679835E818FC63F300E2E6D5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49ACD6B9BC814E2B9C5C9CE6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,8 @@
 		6772269A18FC3D2F00804FDA /* HGAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGAppDelegate.m; path = BeaconScanner/HGAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		6772269B18FC3D2F00804FDA /* HGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGBeacon.h; path = BeaconScanner/HGBeacon.h; sourceTree = SOURCE_ROOT; };
 		6772269C18FC3D2F00804FDA /* HGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBeacon.m; path = BeaconScanner/HGBeacon.m; sourceTree = SOURCE_ROOT; };
-		6772269D18FC3D2F00804FDA /* HGBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGBeaconManager.h; path = BeaconScanner/HGBeaconManager.h; sourceTree = SOURCE_ROOT; };
-		6772269E18FC3D2F00804FDA /* HGBeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBeaconManager.m; path = BeaconScanner/HGBeaconManager.m; sourceTree = SOURCE_ROOT; };
+		6772269D18FC3D2F00804FDA /* HGBeaconScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGBeaconScanner.h; path = BeaconScanner/HGBeaconScanner.h; sourceTree = SOURCE_ROOT; };
+		6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBeaconScanner.m; path = BeaconScanner/HGBeaconScanner.m; sourceTree = SOURCE_ROOT; };
 		6772269F18FC3D2F00804FDA /* HGBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGBeaconViewController.h; path = BeaconScanner/HGBeaconViewController.h; sourceTree = SOURCE_ROOT; };
 		677226A018FC3D2F00804FDA /* HGBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBeaconViewController.m; path = BeaconScanner/HGBeaconViewController.m; sourceTree = SOURCE_ROOT; };
 		677226A118FC3D2F00804FDA /* HGDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGDateValueTransformer.h; path = BeaconScanner/HGDateValueTransformer.h; sourceTree = SOURCE_ROOT; };
@@ -83,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				679835E818FC63F300E2E6D5 /* libPods.a in Frameworks */,
 				675315AC18EF27D30024E9CE /* Cocoa.framework in Frameworks */,
 				675315AB18EF27D30024E9CE /* XCTest.framework in Frameworks */,
 			);
@@ -140,8 +142,8 @@
 				6772269A18FC3D2F00804FDA /* HGAppDelegate.m */,
 				6772269B18FC3D2F00804FDA /* HGBeacon.h */,
 				6772269C18FC3D2F00804FDA /* HGBeacon.m */,
-				6772269D18FC3D2F00804FDA /* HGBeaconManager.h */,
-				6772269E18FC3D2F00804FDA /* HGBeaconManager.m */,
+				6772269D18FC3D2F00804FDA /* HGBeaconScanner.h */,
+				6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */,
 				6772269F18FC3D2F00804FDA /* HGBeaconViewController.h */,
 				677226A018FC3D2F00804FDA /* HGBeaconViewController.m */,
 				677226A118FC3D2F00804FDA /* HGDateValueTransformer.h */,
@@ -233,6 +235,11 @@
 				CLASSPREFIX = HG;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Huge, Inc.";
+				TargetAttributes = {
+					675315A818EF27D30024E9CE = {
+						TestTargetID = 6753158718EF27D30024E9CE;
+					};
+				};
 			};
 			buildConfigurationList = 6753158318EF27D30024E9CE /* Build configuration list for PBXProject "BeaconScanner" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -258,9 +265,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */,
 				677226AE18FC3D2F00804FDA /* Images.xcassets in Resources */,
 				679835E318FC61D300E2E6D5 /* InfoPlist.strings in Resources */,
-				679835D218FC614900E2E6D5 /* MainMenu.xib in Resources */,
 				677226A618FC3D2F00804FDA /* BeaconScanner-Info.plist in Resources */,
 				679835DF18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist in Resources */,
 				679835D718FC615D00E2E6D5 /* Credits.rtf in Resources */,
@@ -316,10 +323,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				677226A918FC3D2F00804FDA /* HGAppDelegate.m in Sources */,
-				679835DA18FC61A600E2E6D5 /* BeaconScannerTests.m in Sources */,
 				677226AD18FC3D2F00804FDA /* HGDateValueTransformer.m in Sources */,
 				677226AA18FC3D2F00804FDA /* HGBeacon.m in Sources */,
-				677226AB18FC3D2F00804FDA /* HGBeaconManager.m in Sources */,
+				677226AB18FC3D2F00804FDA /* HGBeaconScanner.m in Sources */,
 				677226AC18FC3D2F00804FDA /* HGBeaconViewController.m in Sources */,
 				677226AF18FC3D2F00804FDA /* main.m in Sources */,
 			);
@@ -329,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				679835E418FC623200E2E6D5 /* BeaconScannerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,36 +485,42 @@
 		};
 		675315BD18EF27D30024E9CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91FF03F6889A4C75B68ABD07 /* Pods.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Beacon Scanner.app/Contents/MacOS/Beacon Scanner";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DesktopBeacon/DesktopBeacon-Prefix.pch";
+				GCC_PREFIX_HEADER = "BeaconScanner/BeaconScanner-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "DesktopBeaconTests/BeaconScannerTests-Info.plist";
+				INFOPLIST_FILE = "BeaconScannerTests/BeaconScannerTests-Info.plist";
 				PRODUCT_NAME = BeaconScannerTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		675315BE18EF27D30024E9CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91FF03F6889A4C75B68ABD07 /* Pods.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Beacon Scanner.app/Contents/MacOS/Beacon Scanner";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DesktopBeacon/DesktopBeacon-Prefix.pch";
-				INFOPLIST_FILE = "DesktopBeaconTests/BeaconScannerTests-Info.plist";
+				GCC_PREFIX_HEADER = "BeaconScanner/BeaconScanner-Prefix.pch";
+				INFOPLIST_FILE = "BeaconScannerTests/BeaconScannerTests-Info.plist";
 				PRODUCT_NAME = BeaconScannerTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

@@ -1,5 +1,5 @@
 //
-//  HGBeaconManager.h
+//  HGBeaconScanner.h
 //  Beacon Scanner
 //
 //  Created by HUGE | Mike Welles on 2/27/14.
@@ -7,11 +7,11 @@
 //
 #import <Foundation/Foundation.h>
 #import "ReactiveCocoa/ReactiveCocoa.h"
-@interface HGBeaconManager : NSObject
+@interface HGBeaconScanner : NSObject
 @property (nonatomic, readonly) RACSignal *beaconSignal;
 @property (nonatomic, readonly) BOOL scanning;
 -(void)startScanning;
 -(void)stopScanning;
 
-+(HGBeaconManager *)sharedBeaconManager;
++(HGBeaconScanner *)sharedBeaconScanner;
 @end

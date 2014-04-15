@@ -27,7 +27,7 @@ The iBeacon protocol is relatively simple.  It is a 25 byte payload that is set 
 
 ![iBeacon Manufacturer Data Format](Docs/iBeaconManufacturerDataFormat.png)
 
-In order to receive nearby bluetooth advertisements *HGBeaconManager* instantiances a Core Bluetooth Central manager, and assigns it a dedicated dispatch queue:
+In order to receive nearby bluetooth advertisements *HGBeaconScanner* instantiances a Core Bluetooth Central manager, and assigns it a dedicated dispatch queue:
 
 	self.managerQueue = dispatch_queue_create("com.huge.DesktopBeacon.centralManagerQueue", NULL);
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self
@@ -112,8 +112,8 @@ Following are the relevant stanzas where this happens:
 
 To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
 
-- *HGBeaconManager.h*
-- *HGBeaconManager.m*
+- *HGBeaconScanner.h*
+- *HGBeaconScanner.m*
 - *HGBeacon.h*
 - *HGBeacon.m*
 
@@ -121,9 +121,9 @@ The beacon manager announces the beacons it detects to the subscribers of the [R
 
 All that's needed for a client to detect beacons is to subscribe to this signal:
 
-	[[[HGBeaconManager] sharedBeaconManager] startScanning];
+	[[[HGBeaconScanner] sharedBeaconScanner] startScanning];
 	
-	RACSignal *beaconSignal = [[HGBeaconManager sharedBeaconManager] beaconSignal];
+	RACSignal *beaconSignal = [[HGBeaconScanner sharedBeaconScanner] beaconSignal];
 	[beaconSignal subscribeNext:^(HGBeacon *detectedBeacon) {
 		NSLog(@"iBeacon Detected: %@", detectedBeacon);
 	}];
@@ -134,7 +134,7 @@ To limit this subscription to just those beacons that are relevant to your appli
 
 	NSUUID *applicationUUID = [[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
 
-	RACSignal *filteredSignal = [[[HGBeaconManager sharedBeaconManager] beaconSignal] filter:^(HGBeacon *beacon) {
+	RACSignal *filteredSignal = [[[HGBeaconScanner sharedBeaconScanner] beaconSignal] filter:^(HGBeacon *beacon) {
 		return [beaconSignal.proximityUUID isEqual:applicationUUID];
 	}];
 	

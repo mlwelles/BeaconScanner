@@ -7,7 +7,7 @@
 //
 
 #import "HGBeaconViewController.h"
-#import "HGBeaconManager.h"
+#import "HGBeaconScanner.h"
 #import "HGBeacon.h"
 #import "ReactiveCocoa/ReactiveCocoa.h"
 #import "BlocksKit.h"
@@ -27,7 +27,7 @@
         @weakify(self)
 
         // Subscribe to beacons detected by the manager, modify beacon list that is bound to the table view array controller
-        [[[[HGBeaconManager sharedBeaconManager] beaconSignal] deliverOn:[RACScheduler mainThreadScheduler] ] subscribeNext:^(HGBeacon *beacon) {
+        [[[[HGBeaconScanner sharedBeaconScanner] beaconSignal] deliverOn:[RACScheduler mainThreadScheduler] ] subscribeNext:^(HGBeacon *beacon) {
             @strongify(self)
             NSUInteger existingBeaconIndex = [self.beacons indexOfObjectPassingTest:^BOOL(HGBeacon *otherBeacon, NSUInteger idx, BOOL *stop) {
                 return [beacon isEqualToBeacon:otherBeacon];
@@ -62,7 +62,7 @@
                     }
                 }
             }
-            if ([[HGBeaconManager sharedBeaconManager] scanning]) {
+            if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
                 if ([self.statusTextField.stringValue isEqualToString:@"Scanning..."]) {
                       self.statusTextField.stringValue = @"Scanning....";
                 } else {
@@ -84,10 +84,10 @@
         // When IB binds the scanToggleButton, set it to toggle the scanning state in the beacon manager on press
         [RACObserve(self, scanToggleButton) subscribeNext:^(NSButton *button) {
             button.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSButton *button) {
-                if ([[HGBeaconManager sharedBeaconManager] scanning]) {
-                    [[HGBeaconManager sharedBeaconManager] stopScanning];
+                if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
+                    [[HGBeaconScanner sharedBeaconScanner] stopScanning];
                 } else {
-                    [[HGBeaconManager sharedBeaconManager] startScanning];
+                    [[HGBeaconScanner sharedBeaconScanner] startScanning];
                 }
                 return [RACSignal empty];
             }];
@@ -96,7 +96,7 @@
         
 
         // When scanning state in the beacon manager changes, change UI to show new state
-        [[RACObserve(HGBeaconManager.sharedBeaconManager, scanning) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *isScanningNumber) {
+        [[RACObserve(HGBeaconScanner.sharedBeaconScanner, scanning) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *isScanningNumber) {
             @strongify(self)
             if ([isScanningNumber boolValue]) {
                 self.scanToggleButton.title = @"Stop";
@@ -107,7 +107,7 @@
             }
         }];
          
-        [[HGBeaconManager sharedBeaconManager] startScanning];
+        [[HGBeaconScanner sharedBeaconScanner] startScanning];
     }
     return self;
 }

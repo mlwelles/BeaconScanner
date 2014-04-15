@@ -1,25 +1,25 @@
 //
-//  BCBeaconManager.m
+//  BCBeaconScanner.m
 //  Beecon
 //
 //  Created by HUGE | Mike Welles on 2/27/14.
 //  Copyright (c) 2014 Huge, Inc. All rights reserved.
 //
-#import "HGBeaconManager.h"
+#import "HGBeaconScanner.h"
 #import <CoreLocation/CoreLocation.h>
 #import <IOBluetooth/IOBluetooth.h>
 #import "HGBeacon.h"
 #import "libextobjc/EXTScope.h"
 #import "BlocksKit.h"
 
-@interface HGBeaconManager () <CBPeripheralManagerDelegate, CLLocationManagerDelegate,CBCentralManagerDelegate>
+@interface HGBeaconScanner () <CBPeripheralManagerDelegate, CLLocationManagerDelegate,CBCentralManagerDelegate>
 @property (strong,nonatomic) CBCentralManager *centralManager;
 @property (nonatomic, strong) dispatch_queue_t managerQueue;
 @property (nonatomic, strong) RACSubject *beaconSignal;
 @property (nonatomic, strong) RACSignal*housekeepingIntervalSignal;
 @property (nonatomic, assign) BOOL scanning;
 @end
-@implementation HGBeaconManager
+@implementation HGBeaconScanner
 #pragma mark - beacon
 -(id)init {
     self  = [super init];
@@ -78,11 +78,11 @@
     }
 }
 
-+(HGBeaconManager *)sharedBeaconManager {
-    static HGBeaconManager *sharedManager;
++(HGBeaconScanner *)sharedBeaconScanner {
+    static HGBeaconScanner *sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedManager = [[HGBeaconManager alloc] init];
+        sharedManager = [[HGBeaconScanner alloc] init];
     });
     return sharedManager;
 }

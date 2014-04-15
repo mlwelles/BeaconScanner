@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "HGBeaconManager.h"
+#import "HGBeaconScanner.h"
 #import "HGBeacon.h"
 @interface DesktopBeaconTests : XCTestCase
 
@@ -29,14 +29,14 @@
 
 - (void)testManagerScanningStart
 {
-    [[HGBeaconManager sharedBeaconManager] startScanning];
-    XCTAssertTrue([[HGBeaconManager sharedBeaconManager] scanning], @"Manager can start scanning");
+    [[HGBeaconScanner sharedBeaconScanner] startScanning];
+    XCTAssertTrue([[HGBeaconScanner sharedBeaconScanner] scanning], @"Manager can start scanning");
 }
 
 - (void)testManagerScanningStop
 {
-    [[HGBeaconManager sharedBeaconManager] stopScanning];
-    XCTAssertFalse([[HGBeaconManager sharedBeaconManager] scanning], @"Manager can stop scanning");
+    [[HGBeaconScanner sharedBeaconScanner] stopScanning];
+    XCTAssertFalse([[HGBeaconScanner sharedBeaconScanner] scanning], @"Manager can stop scanning");
 }
 
 @end
