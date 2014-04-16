@@ -35,7 +35,7 @@
                 } else if (bluetoothState == HGBeaconScannerBluetoothStateResetting) {
                     return @"Bluetooth is resetting.";
                 } else if (bluetoothState == HGBeaconScannerBluetoothStateUnsupported) {
-                    return [NSString stringWithFormat:@"Your hardware (LMP version %@) does not support Bluetooth Low Energy", [[HGBeaconScanner sharedBeaconScanner] bluetoothLMPVersion] ];
+                    return @"Your hardware does not support Bluetooth Low Energy";
                 } else if (bluetoothState == HGBeaconScannerBluetoothStateUnauthorized) {
                     return @"Application not authorized to use Bluetooth Low Energy";
                 } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOff) {
