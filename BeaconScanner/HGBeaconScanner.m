@@ -62,10 +62,26 @@ NSString *const HGBeaconScannerBluetoothStatePoweredOn = @"HGBeaconScannerBlueto
 }
 
 
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
-    NSLog(@"Peripheral manager did update state: %@", peripheral);
+-(NSNumber *)bluetoothLMPVersion {
+    static NSNumber *bluetoothLMPVersion = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSPipe *outputPipe = [[NSPipe alloc] init];
+        NSTask *task = [[NSTask alloc] init];
+        task.launchPath = @"/bin/bash";
+        task.arguments = @[ @"-c", @"system_profiler -detailLevel full SPBluetoothDataType | grep 'LMP Version:' | awk '{print $3}'"];
+        task.standardOutput = outputPipe;
+        [task launch];
+        [task waitUntilExit];
+        NSData *output = [[outputPipe fileHandleForReading] availableData];
+        NSString *outputString = [[[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n"withString:@""];
+        NSScanner *outputScanner = [NSScanner scannerWithString:outputString];
+        unsigned int outputInt = 0;
+        [outputScanner scanHexInt:&outputInt];
+        bluetoothLMPVersion = [NSNumber numberWithUnsignedInteger:outputInt];
+    });
+    return bluetoothLMPVersion;
 }
-
 
 #pragma mark - CBCentralManagerDelegate
 
@@ -82,7 +98,12 @@ NSString *const HGBeaconScannerBluetoothStatePoweredOn = @"HGBeaconScannerBlueto
             state = HGBeaconScannerBluetoothStateUnauthorized;
             break;
         case CBCentralManagerStatePoweredOff:
-            state = HGBeaconScannerBluetoothStatePoweredOff;
+            //LMP version of 0x4 reports itself off, even though its' actually unsupported;
+            if ([[self bluetoothLMPVersion] integerValue] < 6) {
+                state = HGBeaconScannerBluetoothStateUnsupported;
+            } else {
+                state = HGBeaconScannerBluetoothStatePoweredOff;
+            }
             break;
         case CBCentralManagerStatePoweredOn:
             state = HGBeaconScannerBluetoothStatePoweredOn;
@@ -92,6 +113,7 @@ NSString *const HGBeaconScannerBluetoothStatePoweredOn = @"HGBeaconScannerBlueto
             break;
             
     }
+    NSLog(@"CBluetooth central manager reported new state: %@", state);
     if (state != HGBeaconScannerBluetoothStatePoweredOn) {
         if (self.scanning) {
             [self stopScanning];

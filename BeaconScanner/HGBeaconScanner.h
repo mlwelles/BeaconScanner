@@ -65,6 +65,7 @@ extern NSString *const HGBeaconScannerBluetoothStatePoweredOn;
  *  Stops scanning for beacons
  */
 -(void)stopScanning;
+-(NSNumber *)bluetoothLMPVersion;
 
 +(HGBeaconScanner *)sharedBeaconScanner;
 @end
