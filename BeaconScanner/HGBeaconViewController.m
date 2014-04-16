@@ -26,8 +26,32 @@
 
         @weakify(self)
 
+        // Subscribe to bluetooth state change signals from the beacon scanner
+        [[[[HGBeaconScanner sharedBeaconScanner] bluetoothStateSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSString *const bluetoothState) {
+            @strongify(self)
+            self.bluetoothStatusTextField.stringValue = (^{
+                if (bluetoothState == HGBeaconScannerBluetoothStateUnknown) {
+                    return @"Blutooth state unknown.";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStateResetting) {
+                    return @"Bluetooth is resetting.";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnsupported) {
+                    return @"Platform does not support Bluetooth Low Energy";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnauthorized) {
+                    return @"Application not authorized to use Bluetooth Low Energy";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOff) {
+                    return @"Bluetooth is powered off";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOn) {
+                    return @"Bluetooth is on and available";
+                } else {
+                    return @"Bluetooth state unknown";
+                }
+            }());
+
+            [self.scanToggleButton setEnabled:(bluetoothState == HGBeaconScannerBluetoothStatePoweredOn)];
+            
+        }];
         // Subscribe to beacons detected by the manager, modify beacon list that is bound to the table view array controller
-        [[[[HGBeaconScanner sharedBeaconScanner] beaconSignal] deliverOn:[RACScheduler mainThreadScheduler] ] subscribeNext:^(HGBeacon *beacon) {
+        [[[[HGBeaconScanner sharedBeaconScanner] beaconSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(HGBeacon *beacon) {
             @strongify(self)
             NSUInteger existingBeaconIndex = [self.beacons indexOfObjectPassingTest:^BOOL(HGBeacon *otherBeacon, NSUInteger idx, BOOL *stop) {
                 return [beacon isEqualToBeacon:otherBeacon];
@@ -63,10 +87,10 @@
                 }
             }
             if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
-                if ([self.statusTextField.stringValue isEqualToString:@"Scanning..."]) {
-                      self.statusTextField.stringValue = @"Scanning....";
+                if ([self.scannerStatusTextField.stringValue isEqualToString:@"Scanning..."]) {
+                      self.scannerStatusTextField.stringValue = @"Scanning....";
                 } else {
-                    self.statusTextField.stringValue = @"Scanning...";
+                    self.scannerStatusTextField.stringValue = @"Scanning...";
 
                 }
             }
@@ -100,15 +124,17 @@
             @strongify(self)
             if ([isScanningNumber boolValue]) {
                 self.scanToggleButton.title = @"Stop";
-                self.statusTextField.stringValue = @"Scanning...";
+                self.scannerStatusTextField.stringValue = @"Scanning...";
             } else {
                 self.scanToggleButton.title = @"Start Scanning";
-                self.statusTextField.stringValue = @"Stopped";
+                self.scannerStatusTextField.stringValue = @"Not scanning";
             }
         }];
          
         [[HGBeaconScanner sharedBeaconScanner] startScanning];
     }
+    
+    
     return self;
 }
 

@@ -11,6 +11,7 @@
 		6753158C18EF27D30024E9CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6753158B18EF27D30024E9CE /* Cocoa.framework */; };
 		675315AB18EF27D30024E9CE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675315AA18EF27D30024E9CE /* XCTest.framework */; };
 		675315AC18EF27D30024E9CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6753158B18EF27D30024E9CE /* Cocoa.framework */; };
+		6759F23E18FEF1760076601B /* HGBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677226A018FC3D2F00804FDA /* HGBeaconViewController.m */; };
 		677226A618FC3D2F00804FDA /* BeaconScanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6772269218FC3D2F00804FDA /* BeaconScanner-Info.plist */; };
 		677226A918FC3D2F00804FDA /* HGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269A18FC3D2F00804FDA /* HGAppDelegate.m */; };
 		677226AA18FC3D2F00804FDA /* HGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269C18FC3D2F00804FDA /* HGBeacon.m */; };
@@ -336,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				679835E418FC623200E2E6D5 /* BeaconScannerTests.m in Sources */,
+				6759F23E18FEF1760076601B /* HGBeaconViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

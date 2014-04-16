@@ -12,10 +12,19 @@
 #import "libextobjc/EXTScope.h"
 #import "BlocksKit.h"
 
+NSString *const HGBeaconScannerBluetoothStateUnknown = @"HGBeaconScannerBluetoothStateUnknown";
+NSString *const HGBeaconScannerBluetoothStateResetting = @"HGBeaconScannerBluetoothStateResetting";
+NSString *const HGBeaconScannerBluetoothStateUnsupported = @"HGBeaconScannerBluetoothStateUnsupported";
+NSString *const HGBeaconScannerBluetoothStateUnauthorized = @"HGBeaconScannerBluetoothStateUnauthorized";
+NSString *const HGBeaconScannerBluetoothStatePoweredOff = @" HGBeaconScannerBluetoothStatePoweredOff";
+NSString *const HGBeaconScannerBluetoothStatePoweredOn = @"HGBeaconScannerBluetoothStatePoweredOn";
+
 @interface HGBeaconScanner () <CBPeripheralManagerDelegate, CLLocationManagerDelegate,CBCentralManagerDelegate>
 @property (strong,nonatomic) CBCentralManager *centralManager;
 @property (nonatomic, strong) dispatch_queue_t managerQueue;
 @property (nonatomic, strong) RACSubject *beaconSignal;
+@property (nonatomic, strong) RACSubject *bluetoothStateSignal;
+@property (nonatomic, assign) NSString *const bluetoothState;
 @property (nonatomic, strong) RACSignal*housekeepingIntervalSignal;
 @property (nonatomic, assign) BOOL scanning;
 @end
@@ -24,14 +33,15 @@
 -(id)init {
     self  = [super init];
     if (self) {
-
+        
         self.managerQueue = dispatch_queue_create("com.huge.DesktopBeacon.centralManagerQueue", NULL);
-     
+        
         
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self
                                                                    queue:self.managerQueue];
-
+        
         self.beaconSignal = [RACReplaySubject replaySubjectWithCapacity:1];
+        self.bluetoothStateSignal = [RACReplaySubject replaySubjectWithCapacity:1];
         
     }
     return self;
@@ -57,14 +67,35 @@
 #pragma mark - CBCentralManagerDelegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    NSString *state = nil;
     switch (central.state) {
+        case CBCentralManagerStateResetting:
+            state = HGBeaconScannerBluetoothStateResetting;
+            break;
+        case CBCentralManagerStateUnsupported:
+            state = HGBeaconScannerBluetoothStateUnsupported;
+            break;
+        case CBCentralManagerStateUnauthorized:
+            state = HGBeaconScannerBluetoothStateUnauthorized;
+            break;
+        case CBCentralManagerStatePoweredOff:
+            state = HGBeaconScannerBluetoothStatePoweredOff;
+            break;
         case CBCentralManagerStatePoweredOn:
-            NSLog(@"centralManager did power on: %ld", central.state);
+            state = HGBeaconScannerBluetoothStatePoweredOn;
             break;
         default:
-            NSLog(@"centralManager did update: %ld", central.state);
+            state = HGBeaconScannerBluetoothStateUnknown;
             break;
+            
     }
+    if (state != HGBeaconScannerBluetoothStatePoweredOn) {
+        if (self.scanning) {
+            [self stopScanning];
+        }
+    }
+    self.bluetoothState = state;
+    [(RACSubject *)self.bluetoothStateSignal sendNext:state];
 }
 
 - (void)centralManager:(CBCentralManager *)central
@@ -74,7 +105,7 @@
     HGBeacon *beacon = [HGBeacon beaconWithAdvertismentDataDictionary:advertisementData];
     beacon.RSSI = RSSI;
     if (beacon) {
-        [(RACSubject *)self.beaconSignal sendNext:[beacon copy]];
+        [(RACSubject *)self.beaconSignal sendNext:beacon];
     }
 }
 
