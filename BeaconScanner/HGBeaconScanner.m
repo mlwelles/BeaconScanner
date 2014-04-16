@@ -53,9 +53,12 @@ NSString *const HGBeaconScannerBluetoothStatePoweredOn = @"HGBeaconScannerBlueto
 }
 
 -(void)startScanning {
-    [self.centralManager scanForPeripheralsWithServices:nil
+    if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
+        [self.centralManager scanForPeripheralsWithServices:nil
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];
-    self.scanning = YES;
+        self.scanning = YES;
+    }
+
 }
 
 

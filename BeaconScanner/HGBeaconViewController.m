@@ -106,7 +106,14 @@
         
         
         // When IB binds the scanToggleButton, set it to toggle the scanning state in the beacon manager on press
-        [RACObserve(self, scanToggleButton) subscribeNext:^(NSButton *button) {
+        [[RACObserve(self, scanToggleButton) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSButton *button) {
+            @strongify(self)
+            if ([[HGBeaconScanner sharedBeaconScanner] bluetoothState] != HGBeaconScannerBluetoothStatePoweredOn ) {
+                self.scannerStatusTextField.stringValue = @"Not scanning";
+                button.title = @"Start Scanning";
+                [button setEnabled:NO];
+            }
+
             button.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSButton *button) {
                 if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
                     [[HGBeaconScanner sharedBeaconScanner] stopScanning];
@@ -117,8 +124,7 @@
             }];
         }];
         
-        
-
+     
         // When scanning state in the beacon manager changes, change UI to show new state
         [[RACObserve(HGBeaconScanner.sharedBeaconScanner, scanning) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *isScanningNumber) {
             @strongify(self)
