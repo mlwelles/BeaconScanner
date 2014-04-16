@@ -19,7 +19,7 @@ NSString *const HGBeaconScannerBluetoothStateUnauthorized = @"HGBeaconScannerBlu
 NSString *const HGBeaconScannerBluetoothStatePoweredOff = @" HGBeaconScannerBluetoothStatePoweredOff";
 NSString *const HGBeaconScannerBluetoothStatePoweredOn = @"HGBeaconScannerBluetoothStatePoweredOn";
 
-@interface HGBeaconScanner () <CBPeripheralManagerDelegate, CLLocationManagerDelegate,CBCentralManagerDelegate>
+@interface HGBeaconScanner () <CLLocationManagerDelegate,CBCentralManagerDelegate>
 @property (strong,nonatomic) CBCentralManager *centralManager;
 @property (nonatomic, strong) dispatch_queue_t managerQueue;
 @property (nonatomic, strong) RACSubject *beaconSignal;
