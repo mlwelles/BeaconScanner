@@ -5,7 +5,6 @@
 //  Created by HUGE | Mike Welles on 4/9/14.
 //  Copyright (c) 2014 Huge, Inc. All rights reserved.
 //
-
 #import "HGBeaconViewController.h"
 #import "HGBeaconScanner.h"
 #import "HGBeacon.h"

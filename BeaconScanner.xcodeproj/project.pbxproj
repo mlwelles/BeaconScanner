@@ -144,11 +144,11 @@
 				6772269B18FC3D2F00804FDA /* HGBeacon.h */,
 				6772269C18FC3D2F00804FDA /* HGBeacon.m */,
 				6772269D18FC3D2F00804FDA /* HGBeaconScanner.h */,
-				6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */,
 				6772269F18FC3D2F00804FDA /* HGBeaconViewController.h */,
 				677226A018FC3D2F00804FDA /* HGBeaconViewController.m */,
 				677226A118FC3D2F00804FDA /* HGDateValueTransformer.h */,
 				677226A218FC3D2F00804FDA /* HGDateValueTransformer.m */,
+				6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */,
 				677226A318FC3D2F00804FDA /* Images.xcassets */,
 				6753159218EF27D30024E9CE /* Supporting Files */,
 			);
