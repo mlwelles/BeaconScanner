@@ -22,9 +22,9 @@
     self = [super init];
     if (self) {
         self.beacons = [NSMutableArray array];
-
+        
         @weakify(self)
-
+        
         // Subscribe to bluetooth state change signals from the beacon scanner
         [[[[HGBeaconScanner sharedBeaconScanner] bluetoothStateSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSString *const bluetoothState) {
             @strongify(self)
@@ -45,7 +45,7 @@
                     return @"Bluetooth state unknown";
                 }
             }());
-
+            
             [self.scanToggleButton setEnabled:(bluetoothState == HGBeaconScannerBluetoothStatePoweredOn)];
             
         }];
@@ -71,26 +71,26 @@
         self.housekeepingSignal = [RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]];
         [self.housekeepingSignal subscribeNext:^(NSDate *now) {
             @strongify(self);
-            NSArray *beaconsCopy = [NSArray arrayWithArray:self.beacons];
-            for (HGBeacon *candidateBeacon in beaconsCopy) {
-                NSTimeInterval age = [now timeIntervalSinceDate:candidateBeacon.lastUpdated];
-                if (age > HGBeaconTimeToLiveInterval) {
-                    NSUInteger index = 0;
-                    for (HGBeacon *beacon in self.beacons) {
-                        if ([beacon isEqualToBeacon:candidateBeacon]) {
-                            [self removeObjectFromBeaconsAtIndex:index];
-                            break;
+            if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
+                NSArray *beaconsCopy = [NSArray arrayWithArray:self.beacons];
+                for (HGBeacon *candidateBeacon in beaconsCopy) {
+                    NSTimeInterval age = [now timeIntervalSinceDate:candidateBeacon.lastUpdated];
+                    if (age > HGBeaconTimeToLiveInterval) {
+                        NSUInteger index = 0;
+                        for (HGBeacon *beacon in self.beacons) {
+                            if ([beacon isEqualToBeacon:candidateBeacon]) {
+                                [self removeObjectFromBeaconsAtIndex:index];
+                                break;
+                            }
+                            index++;
                         }
-                        index++;
                     }
                 }
-            }
-            if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
                 if ([self.scannerStatusTextField.stringValue isEqualToString:@"Scanning..."]) {
-                      self.scannerStatusTextField.stringValue = @"Scanning....";
+                    self.scannerStatusTextField.stringValue = @"Scanning....";
                 } else {
                     self.scannerStatusTextField.stringValue = @"Scanning...";
-
+                    
                 }
             }
         }];
@@ -112,7 +112,7 @@
                 button.title = @"Start Scanning";
                 [button setEnabled:NO];
             }
-
+            
             button.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSButton *button) {
                 if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
                     [[HGBeaconScanner sharedBeaconScanner] stopScanning];
@@ -123,7 +123,7 @@
             }];
         }];
         
-     
+        
         // When scanning state in the beacon manager changes, change UI to show new state
         [[RACObserve(HGBeaconScanner.sharedBeaconScanner, scanning) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *isScanningNumber) {
             @strongify(self)
@@ -135,7 +135,7 @@
                 self.scannerStatusTextField.stringValue = @"Not scanning";
             }
         }];
-         
+        
         [[HGBeaconScanner sharedBeaconScanner] startScanning];
     }
     
