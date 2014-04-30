@@ -11,7 +11,7 @@ It provides an easy way to scan for nearby beacons from your Mac. Additionally, 
 
 ##How to Install It
 
-To install without building from source, first [download the prebuilt archive](https://github.com/mlwelles/BeaconScanner/releases/download/1.1/BeaconScanner-1.1.4.zip).  Double click the zip to extract, and then double click again to run. 
+To install without building from source, first [download the prebuilt archive](https://github.com/mlwelles/BeaconScanner/releases/latest).  Double click the zip to extract, and then double click again to run. 
 
 Once you start the app it'll automatically begin scanning for bluetooth devices.  Any beacons within range will automatically appear and it will continuously update as long as it remains scanning.
 
