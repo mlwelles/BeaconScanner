@@ -45,6 +45,11 @@
 #import "stdint.h"
 #import "EXTScope.h"
 NSString *const HGBeaconAdvertismentManufacturerDataKey = @"kCBAdvDataAppleBeaconKey";
+
+//@interface HGBeacon()
+//@property (nonatomic, readonly) NSString *keyValue;
+//@end
+
 @implementation HGBeacon
 
 - (id)initWithProximityUUID:(NSUUID *)proximityUUID major:(NSNumber *)major minor:(NSNumber *)minor measuredPower:(NSNumber *)power {
@@ -147,6 +152,7 @@ NSString *const HGBeaconAdvertismentManufacturerDataKey = @"kCBAdvDataAppleBeaco
     }
     return [super isEqualTo:object];
 }
+
 
 #pragma mark - NSCopying
 -(id)copyWithZone:(NSZone *)zone {

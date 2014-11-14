@@ -11,9 +11,11 @@
 #import "ReactiveCocoa/ReactiveCocoa.h"
 #import "BlocksKit.h"
 #import "EXTScope.h"
+#import "HGBeaconHistory.h"
 #define HGBeaconTimeToLiveInterval 15
 @interface HGBeaconViewController()
 @property (strong) RACSignal *housekeepingSignal;
+@property (strong) HGBeaconHistory *beaconHistory;
 @end
 @implementation HGBeaconViewController
 
@@ -22,35 +24,14 @@
     self = [super init];
     if (self) {
         self.beacons = [NSMutableArray array];
-        
+
+    
+
+        RACSignal *beaconSignal = [[HGBeaconScanner sharedBeaconScanner] beaconSignal];
+        _beaconHistory = [[HGBeaconHistory alloc] initWithBeaconSignal:beaconSignal];
         @weakify(self)
-        
-        // Subscribe to bluetooth state change signals from the beacon scanner
-        [[[[HGBeaconScanner sharedBeaconScanner] bluetoothStateSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSString *const bluetoothState) {
-            @strongify(self)
-            self.bluetoothStatusTextField.stringValue = (^{
-                if (bluetoothState == HGBeaconScannerBluetoothStateUnknown) {
-                    return @"Blutooth state unknown.";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStateResetting) {
-                    return @"Bluetooth is resetting.";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnsupported) {
-                    return @"Your hardware does not support Bluetooth Low Energy";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnauthorized) {
-                    return @"Application not authorized to use Bluetooth Low Energy";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOff) {
-                    return @"Bluetooth is powered off";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOn) {
-                    return @"Bluetooth is on and available";
-                } else {
-                    return @"Bluetooth state unknown";
-                }
-            }());
-            
-            [self.scanToggleButton setEnabled:(bluetoothState == HGBeaconScannerBluetoothStatePoweredOn)];
-            
-        }];
         // Subscribe to beacons detected by the manager, modify beacon list that is bound to the table view array controller
-        [[[[HGBeaconScanner sharedBeaconScanner] beaconSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(HGBeacon *beacon) {
+        [[beaconSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(HGBeacon *beacon) {
             @strongify(self)
             NSUInteger existingBeaconIndex = [self.beacons indexOfObjectPassingTest:^BOOL(HGBeacon *otherBeacon, NSUInteger idx, BOOL *stop) {
                 return [beacon isEqualToBeacon:otherBeacon];
@@ -94,6 +75,33 @@
                 }
             }
         }];
+        
+        
+        // Subscribe to bluetooth state change signals from the beacon scanner
+        [[[[HGBeaconScanner sharedBeaconScanner] bluetoothStateSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSString *const bluetoothState) {
+            @strongify(self)
+            self.bluetoothStatusTextField.stringValue = (^{
+                if (bluetoothState == HGBeaconScannerBluetoothStateUnknown) {
+                    return @"Blutooth state unknown.";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStateResetting) {
+                    return @"Bluetooth is resetting.";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnsupported) {
+                    return @"Your hardware does not support Bluetooth Low Energy";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnauthorized) {
+                    return @"Application not authorized to use Bluetooth Low Energy";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOff) {
+                    return @"Bluetooth is powered off";
+                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOn) {
+                    return @"Bluetooth is on and available";
+                } else {
+                    return @"Bluetooth state unknown";
+                }
+            }());
+            
+            [self.scanToggleButton setEnabled:(bluetoothState == HGBeaconScannerBluetoothStatePoweredOn)];
+            
+        }];
+        
         // Sort descriptors to use, bound in MainMenu.xib to the array controller for the table view and the table view
         self.beaconSortDescriptors = @[
                                        [[NSSortDescriptor alloc] initWithKey:@"proximityUUID.UUIDString" ascending:NO],

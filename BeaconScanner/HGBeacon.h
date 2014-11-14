@@ -52,15 +52,18 @@
 @property (strong,nonatomic) NSNumber *measuredPower;
 @property (strong,nonatomic) NSNumber *RSSI;
 @property (strong,nonatomic) NSDate *lastUpdated;
+
+@property (nonatomic, readonly) NSString *keyValue;
+
 - (id)initWithProximityUUID:(NSUUID *)proximityUUID
                       major:(NSNumber *)major
                       minor:(NSNumber *)minor
               measuredPower:(NSNumber *)power;
 
 
-+(HGBeacon *)beaconWithAdvertismentDataDictionary:(NSDictionary *)dictionary;
-+(HGBeacon *)beaconWithManufacturerAdvertisementData:(NSData *)data;
--(BOOL)isEqualToBeacon:(HGBeacon *)otherBeacon;
++ (HGBeacon *)beaconWithAdvertismentDataDictionary:(NSDictionary *)dictionary;
++ (HGBeacon *)beaconWithManufacturerAdvertisementData:(NSData *)data;
+- (BOOL)isEqualToBeacon:(HGBeacon *)otherBeacon;
 
 - (NSDictionary *)advertismentDictionary;
 

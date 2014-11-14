@@ -27,6 +27,7 @@
 		679835E418FC623200E2E6D5 /* BeaconScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 679835D918FC61A600E2E6D5 /* BeaconScannerTests.m */; };
 		679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679835D018FC614900E2E6D5 /* MainMenu.xib */; };
 		679835E818FC63F300E2E6D5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49ACD6B9BC814E2B9C5C9CE6 /* libPods.a */; };
+		67F09DA61A168C8C006AB4AD /* HGBeaconHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		679835D918FC61A600E2E6D5 /* BeaconScannerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeaconScannerTests.m; path = BeaconScannerTests/BeaconScannerTests.m; sourceTree = SOURCE_ROOT; };
 		679835DB18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BeaconScannerTests-Info.plist"; path = "BeaconScannerTests/BeaconScannerTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		679835E218FC61D300E2E6D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = BeaconScannerTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		67F09DA41A168C8C006AB4AD /* HGBeaconHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGBeaconHistory.h; path = BeaconScanner/HGBeaconHistory.h; sourceTree = SOURCE_ROOT; };
+		67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBeaconHistory.m; path = BeaconScanner/HGBeaconHistory.m; sourceTree = SOURCE_ROOT; };
 		91FF03F6889A4C75B68ABD07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +152,8 @@
 				677226A118FC3D2F00804FDA /* HGDateValueTransformer.h */,
 				677226A218FC3D2F00804FDA /* HGDateValueTransformer.m */,
 				6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */,
+				67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */,
+				67F09DA41A168C8C006AB4AD /* HGBeaconHistory.h */,
 				677226A318FC3D2F00804FDA /* Images.xcassets */,
 				6753159218EF27D30024E9CE /* Supporting Files */,
 			);
@@ -325,6 +330,7 @@
 			files = (
 				677226A918FC3D2F00804FDA /* HGAppDelegate.m in Sources */,
 				677226AD18FC3D2F00804FDA /* HGDateValueTransformer.m in Sources */,
+				67F09DA61A168C8C006AB4AD /* HGBeaconHistory.m in Sources */,
 				677226AA18FC3D2F00804FDA /* HGBeacon.m in Sources */,
 				677226AB18FC3D2F00804FDA /* HGBeaconScanner.m in Sources */,
 				677226AC18FC3D2F00804FDA /* HGBeaconViewController.m in Sources */,
