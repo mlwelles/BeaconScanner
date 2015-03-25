@@ -42,7 +42,7 @@ It then asks the Bluetooth Central Manager to start scanning for peripherals:
 
 The options specify it should should execute a callback everytime it detects any given device. This is important for iBeacons, as their continued detection is the only way to determine if they're still in range. 
 
-In this delegate callback, the beacon scanner determines whether or not a detected peripheral is an iBeacon by trying to parse the iBeacon message from the advertisement data dictionary recieved from the peripheral. If it succeeds it sends a *HGBeacon* object created from the message to its subscribers. 
+In this delegate callback, the beacon scanner determines whether or not a detected peripheral is an iBeacon by trying to parse the iBeacon message from the advertisement data dictionary received from the peripheral. If it succeeds it sends a *HGBeacon* object created from the message to its subscribers. 
 
 	- (void)centralManager:(CBCentralManager *)central
 	 didDiscoverPeripheral:(CBPeripheral *)peripheral
