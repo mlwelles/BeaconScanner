@@ -143,7 +143,7 @@ To limit this subscription to just those beacons that are relevant to your appli
 NSUUID *applicationUUID = [[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
 
 RACSignal *filteredSignal = [[[HGBeaconScanner sharedBeaconScanner] beaconSignal] filter:^(HGBeacon *beacon) {
-	return [beaconSignal.proximityUUID isEqual:applicationUUID];
+	return [beacon.proximityUUID isEqual:applicationUUID];
 }];
 ```
 
