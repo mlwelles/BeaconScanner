@@ -1,27 +1,26 @@
 PODS:
-  - BlocksKit (2.0.0):
-    - BlocksKit/All
-  - BlocksKit/All (2.0.0):
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
     - BlocksKit/MessageUI
     - BlocksKit/UIKit
-  - BlocksKit/Core (2.0.0)
-  - BlocksKit/DynamicDelegate (2.0.0):
-    - libffi
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
   - libextobjc (0.4):
-    - libextobjc/EXTADT
-    - libextobjc/EXTConcreteProtocol
-    - libextobjc/EXTKeyPathCoding
-    - libextobjc/EXTNil
-    - libextobjc/EXTSafeCategory
-    - libextobjc/EXTScope
-    - libextobjc/EXTSelectorChecking
-    - libextobjc/EXTSynthesize
-    - libextobjc/NSInvocation+EXT
-    - libextobjc/NSMethodSignature+EXT
-    - libextobjc/RuntimeExtensions
-    - libextobjc/UmbrellaHeader
+    - libextobjc/EXTADT (= 0.4)
+    - libextobjc/EXTConcreteProtocol (= 0.4)
+    - libextobjc/EXTKeyPathCoding (= 0.4)
+    - libextobjc/EXTNil (= 0.4)
+    - libextobjc/EXTSafeCategory (= 0.4)
+    - libextobjc/EXTScope (= 0.4)
+    - libextobjc/EXTSelectorChecking (= 0.4)
+    - libextobjc/EXTSynthesize (= 0.4)
+    - libextobjc/NSInvocation+EXT (= 0.4)
+    - libextobjc/NSMethodSignature+EXT (= 0.4)
+    - libextobjc/RuntimeExtensions (= 0.4)
+    - libextobjc/UmbrellaHeader (= 0.4)
   - libextobjc/EXTADT (0.4):
     - libextobjc/RuntimeExtensions
   - libextobjc/EXTConcreteProtocol (0.4):
@@ -45,20 +44,21 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4)
   - libextobjc/UmbrellaHeader (0.4)
   - ReactiveCocoa (2.3):
-    - ReactiveCocoa/Core
-    - ReactiveCocoa/no-arc
+    - ReactiveCocoa/UI (= 2.3)
   - ReactiveCocoa/Core (2.3):
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.3)
+  - ReactiveCocoa/UI (2.3):
+    - ReactiveCocoa/Core
 
 DEPENDENCIES:
-  - BlocksKit (~> 2.0.0)
+  - BlocksKit (~> 2.2.5)
   - libextobjc
   - ReactiveCocoa (~> 2.1)
 
 SPEC CHECKSUMS:
-  BlocksKit: c719258499c89fb43619abb434506a67b9e5332d
-  libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a
-  ReactiveCocoa: 1f6265f9d521923d3efcc37b00722cefc16df269
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  libextobjc: f2802d4262f6885570df9799747409ceb1de602c
+  ReactiveCocoa: fbe689fe218063b7bbed41032912c9ca4fdbe172
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.36.1
