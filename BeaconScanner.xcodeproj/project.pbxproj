@@ -503,6 +503,7 @@
 		};
 		675315BD18EF27D30024E9CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 684D9CB187731C6225EF3654 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Beacon Scanner.app/Contents/MacOS/Beacon Scanner";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -525,6 +526,7 @@
 		};
 		675315BE18EF27D30024E9CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F4A6EFFC00637ECAA58FDBA /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Beacon Scanner.app/Contents/MacOS/Beacon Scanner";
 				COMBINE_HIDPI_IMAGES = YES;
