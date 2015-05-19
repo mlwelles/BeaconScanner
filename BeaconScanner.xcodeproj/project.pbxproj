@@ -12,7 +12,6 @@
 		675315AB18EF27D30024E9CE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675315AA18EF27D30024E9CE /* XCTest.framework */; };
 		675315AC18EF27D30024E9CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6753158B18EF27D30024E9CE /* Cocoa.framework */; };
 		6759F23E18FEF1760076601B /* HGBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677226A018FC3D2F00804FDA /* HGBeaconViewController.m */; };
-		677226A618FC3D2F00804FDA /* BeaconScanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6772269218FC3D2F00804FDA /* BeaconScanner-Info.plist */; };
 		677226A918FC3D2F00804FDA /* HGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269A18FC3D2F00804FDA /* HGAppDelegate.m */; };
 		677226AA18FC3D2F00804FDA /* HGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269C18FC3D2F00804FDA /* HGBeacon.m */; };
 		677226AB18FC3D2F00804FDA /* HGBeaconScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6772269E18FC3D2F00804FDA /* HGBeaconScanner.m */; };
@@ -249,7 +248,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HG;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Huge, Inc.";
 				TargetAttributes = {
 					675315A818EF27D30024E9CE = {
@@ -284,7 +283,6 @@
 				679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */,
 				677226AE18FC3D2F00804FDA /* Images.xcassets in Resources */,
 				679835E318FC61D300E2E6D5 /* InfoPlist.strings in Resources */,
-				677226A618FC3D2F00804FDA /* BeaconScanner-Info.plist in Resources */,
 				679835DF18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist in Resources */,
 				679835D718FC615D00E2E6D5 /* Credits.rtf in Resources */,
 				679835D818FC615D00E2E6D5 /* InfoPlist.strings in Resources */,
