@@ -24,7 +24,7 @@ Building the app requires [cocoapods](http://cocoapods.org).  Once installed, la
 ##How It Works
 
 
-The iBeacon protocol is relatively simple.  It is a 25 byte payload that is set as the manufacturer data field of a bluetooth LE advertisment.  The format of this message is as follows:
+The iBeacon protocol is relatively simple.  It is a 25 byte payload that is set as the manufacturer data field of a bluetooth LE advertisement.  The format of this message is as follows:
 
 ![iBeacon Manufacturer Data Format](Docs/iBeaconManufacturerDataFormat.png)
 
@@ -52,7 +52,7 @@ In this delegate callback, the beacon scanner determines whether or not a detect
  didDiscoverPeripheral:(CBPeripheral *)peripheral
 	 advertisementData:(NSDictionary *)advertisementData
 	              RSSI:(NSNumber *)RSSI {
-	HGBeacon *beacon = [HGBeacon beaconWithAdvertismentDataDictionary:advertisementData];
+	HGBeacon *beacon = [HGBeacon beaconWithAdvertisementDataDictionary:advertisementData];
     beacon.RSSI = RSSI;
     if (beacon) {
 	    [(RACSubject *)self.beaconSignal sendNext:[beacon copy]];
@@ -65,7 +65,7 @@ The parsing of the advertisement data dictionary happens inside *HGBeacon*.  It 
 Following are the relevant stanzas where this happens:
 
 ```objc
-+(HGBeacon *)beaconWithAdvertismentDataDictionary:(NSDictionary *)advertisementDataDictionary {
++(HGBeacon *)beaconWithAdvertisementDataDictionary:(NSDictionary *)advertisementDataDictionary {
     NSData *data = (NSData *)[advertisementDataDictionary objectForKey:CBAdvertisementDataManufacturerDataKey];
     if (data) {
         return [self beaconWithManufacturerAdvertisementData:data];
