@@ -153,6 +153,12 @@ NSString *const HGBeaconAdvertismentManufacturerDataKey = @"kCBAdvDataAppleBeaco
     return [super isEqualTo:object];
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p, UUID: %@, major: %@, minor: %@>",
+            [self class], self, [self.proximityUUID UUIDString], self.major, self.minor];
+}
+
 
 #pragma mark - NSCopying
 -(id)copyWithZone:(NSZone *)zone {

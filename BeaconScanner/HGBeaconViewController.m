@@ -21,8 +21,12 @@
 @end
 @implementation HGBeaconViewController
 
-- (id)init
-{
+- (void) awakeFromNib {
+    [self.tableView setAllowsEmptySelection:YES];
+    [self.tableView setAllowsColumnSelection:NO];
+}
+
+- (id)init {
     self = [super init];
     if (self) {
         self.beacons = [NSMutableArray array];
@@ -32,9 +36,8 @@
         // Subscribe to beacons detected by the manager, modify beacon list that is bound to the table view array
         [[beaconSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(HGBeacon *beacon) {
             @strongify(self)
-            NSUInteger existingBeaconIndex = [self.beacons indexOfObjectPassingTest:^BOOL(HGBeacon *otherBeacon, NSUInteger idx, BOOL *stop) {
-                return [beacon isEqualToBeacon:otherBeacon];
-            }];
+            BOOL shouldReselect  = (self.tableView.selectedRow >= 0);
+            NSUInteger existingBeaconIndex = [self rowForBeacon:beacon];
             if (existingBeaconIndex != NSNotFound) {
                 HGBeacon *existingBeacon = [self.beacons objectAtIndex:existingBeaconIndex];
                 [self removeObjectFromBeaconsAtIndex:existingBeaconIndex];
@@ -45,13 +48,10 @@
             } else {
                 [self addBeaconsObject:beacon];
             }
-            
-            //If we had a row selected, re-selected it
-            NSUInteger selectedRow = [self rowForBeacon:self.lastSelectedBeacon];
-            if ( selectedRow != NSNotFound ) {
-                NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:selectedRow];
-                [self.tableView selectRowIndexes:indexSet byExtendingSelection:false];
+            if (shouldReselect) {
+                [self selectRowForBeacon:self.lastSelectedBeacon];
             }
+
         }];
         
         // Setup a interval signal that will purge expired beacons (determined by a last update longer than HGBeaconTimeToLiveInterval) from the displayed list
@@ -59,6 +59,8 @@
         [self.housekeepingSignal subscribeNext:^(NSDate *now) {
             @strongify(self);
             if ([[HGBeaconScanner sharedBeaconScanner] scanning]) {
+                BOOL shouldReselect  = (self.tableView.selectedRow >= 0);
+                BOOL didChange = NO;
                 NSArray *beaconsCopy = [NSArray arrayWithArray:self.beacons];
                 for (HGBeacon *candidateBeacon in beaconsCopy) {
                     NSTimeInterval age = [now timeIntervalSinceDate:candidateBeacon.lastUpdated];
@@ -67,11 +69,15 @@
                         for (HGBeacon *beacon in self.beacons) {
                             if ([beacon isEqualToBeacon:candidateBeacon]) {
                                 [self removeObjectFromBeaconsAtIndex:index];
+                                didChange = YES;
                                 break;
                             }
                             index++;
                         }
                     }
+                }
+                if (didChange && shouldReselect) {
+                    [self selectRowForBeacon:self.lastSelectedBeacon];
                 }
                 if ([self.scannerStatusTextField.stringValue isEqualToString:@"Scanning..."]) {
                     self.scannerStatusTextField.stringValue = @"Scanning....";
@@ -139,22 +145,28 @@
     return self;
 }
 
-
--(NSInteger)rowForBeacon:(HGBeacon *)beacon {
-    for (int row = 0; row < self.beacons.count; row++) {
-        HGBeacon *rowBeacon = self.beacons[0];
-        if ([beacon isEqualToBeacon:rowBeacon]) {
-            return row;
+-(void)selectRowForBeacon:(HGBeacon *)beaconToSelect{
+    //If we had a row selected, re-select it
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSUInteger selectedRow = [self rowForBeacon:beaconToSelect];
+        if ( selectedRow != NSNotFound ) {
+            NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:selectedRow];
+            [self.tableView selectRowIndexes:indexSet byExtendingSelection:false];
         }
-    }
-    return NSNotFound;
+    });
+    
+}
+-(NSInteger)rowForBeacon:(HGBeacon *)beacon {
+    return [self.arrayController.arrangedObjects indexOfObjectPassingTest:^BOOL(HGBeacon *otherBeacon, NSUInteger idx, BOOL *stop) {
+        return [beacon isEqualToBeacon:otherBeacon];
+    }];
+
 }
 -(HGBeacon *)beaconForRow:(NSInteger) row {
     HGBeacon *beacon = nil;
     if ( row >= 0 &&
-        row < self.tableView.numberOfRows &&
-        row < self.beacons.count ) {
-        beacon = self.beacons[row];
+        row < [self.arrayController.arrangedObjects count]) {
+        beacon = (HGBeacon *)self.arrayController.arrangedObjects[row];
     }
     return beacon;
 }
@@ -165,6 +177,16 @@
     HGBeacon *newBeacon = [self beaconForRow:tableView.selectedRow];
     if (newBeacon) {
         self.lastSelectedBeacon = newBeacon;
+    }
+}
+
+
+- (void)tableView:(NSTableView *)tableView
+didClickTableColumn:(NSTableColumn *)tableColumn {
+    if (self.tableView.selectedRow == -1) {
+        self.lastSelectedBeacon = nil;
+    } else {
+        [self selectRowForBeacon:self.lastSelectedBeacon];
     }
 }
 

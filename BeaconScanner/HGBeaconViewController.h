@@ -15,4 +15,5 @@
 @property(nonatomic,weak) IBOutlet NSTextField *scannerStatusTextField;
 @property(nonatomic,weak) IBOutlet NSTextField *bluetoothStatusTextField;
 @property(nonatomic, weak) IBOutlet NSTableView *tableView;
+@property(nonatomic, weak) IBOutlet NSArrayController *arrayController;
 @end

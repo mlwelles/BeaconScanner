@@ -20,6 +20,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="nF1-6k-907" customClass="HGBeaconViewController">
             <connections>
+                <outlet property="arrayController" destination="bR3-4d-4Vy" id="V29-zm-okx"/>
                 <outlet property="bluetoothStatusTextField" destination="04Y-oF-bK2" id="GxW-b2-0bO"/>
                 <outlet property="scanToggleButton" destination="evM-58-jet" id="LeF-zS-nI6"/>
                 <outlet property="scannerStatusTextField" destination="UKN-Ca-y34" id="ZOq-RF-CPi"/>
@@ -27,7 +28,7 @@
                 <outlet property="view" destination="EiT-Mj-1SZ" id="gWO-eF-WTs"/>
             </connections>
         </customObject>
-        <arrayController objectClassName="BCBeacon" editable="NO" id="bR3-4d-4Vy" userLabel="Beacon Array Controller">
+        <arrayController objectClassName="BCBeacon" editable="NO" automaticallyRearrangesObjects="YES" id="bR3-4d-4Vy" userLabel="Beacon Array Controller">
             <declaredKeys>
                 <string>major</string>
                 <string>proximityUUID</string>

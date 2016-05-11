@@ -107,7 +107,6 @@
             break;
             
     }
-    NSLog(@"CBluetooth central manager reported new state: %@", state);
     if (state != HGGBluetoothStatePoweredOn) {
         if (self.scanning) {
             [self stopScanning];
