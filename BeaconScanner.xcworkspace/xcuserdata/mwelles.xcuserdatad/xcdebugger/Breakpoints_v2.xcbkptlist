@@ -6,32 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeaconScanner/HGBeaconScanner.m"
-            timestampString = "419371159.027932"
+            filePath = "BeaconScanner/NSTableView+CopySelectedRow.m"
+            timestampString = "484678544.100829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-bluetoothLMPVersion"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeaconScanner/HGBeaconScanner.m"
-            timestampString = "419371128.647664"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-bluetoothLMPVersion"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "-copySelectedRow"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

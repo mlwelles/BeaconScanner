@@ -11,32 +11,32 @@
 /**
  *  State unknown, update imminent.
  */
-extern NSString *const HGBeaconScannerBluetoothStateUnknown;
+extern NSString *const HGGBluetoothStateUnknown;
 
 /**
  *  The connection with the system service was momentarily lost, update imminent.
  */
-extern NSString *const HGBeaconScannerBluetoothStateResetting;
+extern NSString *const HGGBluetoothStateResetting;
 
 /**
  *  The platform doesn't support Bluetooth Low Energy.
  */
-extern NSString *const HGBeaconScannerBluetoothStateUnsupported;
+extern NSString *const HGGBluetoothStateUnsupported;
 
 /**
  *  The app is not authorized to use Bluetooth Low Energy.
  */
-extern NSString *const HGBeaconScannerBluetoothStateUnauthorized;
+extern NSString *const HGGBluetoothStateUnauthorized;
 
 /**
  *  Bluetooth is powered off
  */
-extern NSString *const HGBeaconScannerBluetoothStatePoweredOff;
+extern NSString *const HGGBluetoothStatePoweredOff;
 
 /**
  *  Bluetooth is currently powered on and available to use.
  */
-extern NSString *const HGBeaconScannerBluetoothStatePoweredOn;
+extern NSString *const HGGBluetoothStatePoweredOn;
 
 
 @interface HGBeaconScanner : NSObject

@@ -12,10 +12,12 @@
 #import "BlocksKit.h"
 #import "EXTScope.h"
 #import "HGBeaconHistory.h"
+#import "HGBluetoothState.h"
 #define HGBeaconTimeToLiveInterval 15
 @interface HGBeaconViewController()
 @property (strong) RACSignal *housekeepingSignal;
 @property (strong) HGBeaconHistory *beaconHistory;
+@property (strong) HGBeacon *lastSelectedBeacon;
 @end
 @implementation HGBeaconViewController
 
@@ -24,13 +26,10 @@
     self = [super init];
     if (self) {
         self.beacons = [NSMutableArray array];
-
-    
-
         RACSignal *beaconSignal = [[HGBeaconScanner sharedBeaconScanner] beaconSignal];
         _beaconHistory = [[HGBeaconHistory alloc] initWithBeaconSignal:beaconSignal];
         @weakify(self)
-        // Subscribe to beacons detected by the manager, modify beacon list that is bound to the table view array controller
+        // Subscribe to beacons detected by the manager, modify beacon list that is bound to the table view array
         [[beaconSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(HGBeacon *beacon) {
             @strongify(self)
             NSUInteger existingBeaconIndex = [self.beacons indexOfObjectPassingTest:^BOOL(HGBeacon *otherBeacon, NSUInteger idx, BOOL *stop) {
@@ -45,6 +44,13 @@
                 [self insertObject:existingBeacon inBeaconsAtIndex:existingBeaconIndex];
             } else {
                 [self addBeaconsObject:beacon];
+            }
+            
+            //If we had a row selected, re-selected it
+            NSUInteger selectedRow = [self rowForBeacon:self.lastSelectedBeacon];
+            if ( selectedRow != NSNotFound ) {
+                NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:selectedRow];
+                [self.tableView selectRowIndexes:indexSet byExtendingSelection:false];
             }
         }];
         
@@ -80,25 +86,8 @@
         // Subscribe to bluetooth state change signals from the beacon scanner
         [[[[HGBeaconScanner sharedBeaconScanner] bluetoothStateSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSString *const bluetoothState) {
             @strongify(self)
-            self.bluetoothStatusTextField.stringValue = (^{
-                if (bluetoothState == HGBeaconScannerBluetoothStateUnknown) {
-                    return @"Blutooth state unknown.";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStateResetting) {
-                    return @"Bluetooth is resetting.";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnsupported) {
-                    return @"Your hardware does not support Bluetooth Low Energy";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStateUnauthorized) {
-                    return @"Application not authorized to use Bluetooth Low Energy";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOff) {
-                    return @"Bluetooth is powered off";
-                } else if (bluetoothState == HGBeaconScannerBluetoothStatePoweredOn) {
-                    return @"Bluetooth is on and available";
-                } else {
-                    return @"Bluetooth state unknown";
-                }
-            }());
-            
-            [self.scanToggleButton setEnabled:(bluetoothState == HGBeaconScannerBluetoothStatePoweredOn)];
+            self.bluetoothStatusTextField.stringValue = HGBluetoothStateDescription(bluetoothState);
+            [self.scanToggleButton setEnabled:(bluetoothState == HGGBluetoothStatePoweredOn)];
             
         }];
         
@@ -115,7 +104,7 @@
         // When IB binds the scanToggleButton, set it to toggle the scanning state in the beacon manager on press
         [[RACObserve(self, scanToggleButton) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSButton *button) {
             @strongify(self)
-            if ([[HGBeaconScanner sharedBeaconScanner] bluetoothState] != HGBeaconScannerBluetoothStatePoweredOn ) {
+            if ([[HGBeaconScanner sharedBeaconScanner] bluetoothState] != HGGBluetoothStatePoweredOn ) {
                 self.scannerStatusTextField.stringValue = @"Not scanning";
                 button.title = @"Start Scanning";
                 [button setEnabled:NO];
@@ -146,9 +135,51 @@
         
         [[HGBeaconScanner sharedBeaconScanner] startScanning];
     }
-    
-    
+
     return self;
+}
+
+
+-(NSInteger)rowForBeacon:(HGBeacon *)beacon {
+    for (int row = 0; row < self.beacons.count; row++) {
+        HGBeacon *rowBeacon = self.beacons[0];
+        if ([beacon isEqualToBeacon:rowBeacon]) {
+            return row;
+        }
+    }
+    return NSNotFound;
+}
+-(HGBeacon *)beaconForRow:(NSInteger) row {
+    HGBeacon *beacon = nil;
+    if ( row >= 0 &&
+        row < self.tableView.numberOfRows &&
+        row < self.beacons.count ) {
+        beacon = self.beacons[row];
+    }
+    return beacon;
+}
+
+#pragma mark - NSTableView delegate 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSTableView *tableView = (NSTableView *)[notification object];
+    HGBeacon *newBeacon = [self beaconForRow:tableView.selectedRow];
+    if (newBeacon) {
+        self.lastSelectedBeacon = newBeacon;
+    }
+}
+
+
+#pragma mark - NSWindowController delegate
+- (IBAction) copy:(id)sender
+{
+    HGBeacon *beacon = self.lastSelectedBeacon;
+    if (!beacon) {
+        return;
+    }
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    [pasteboard declareTypes:@[NSStringPboardType]
+               owner:nil];
+    [pasteboard setString:beacon.proximityUUID.UUIDString forType:NSStringPboardType];
 }
 
 #pragma mark - KVO Compliance for beacons

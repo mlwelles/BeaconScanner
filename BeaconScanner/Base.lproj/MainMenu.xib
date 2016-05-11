@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HGAppDelegate">
@@ -10,7 +11,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="HGAppDelegate">
             <connections>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -693,23 +694,22 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="780" height="364"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="780" height="364"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79K-Zf-kc1">
                         <rect key="frame" x="-1" y="61" width="782" height="304"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="nH9-IB-6pL">
-                            <rect key="frame" x="1" y="17" width="780" height="286"/>
+                            <rect key="frame" x="1" y="0.0" width="780" height="303"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1nI-Er-1Q8" id="AH2-px-RsF">
-                                    <rect key="frame" x="0.0" y="0.0" width="780" height="286"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="780" height="280"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn editable="NO" width="300" minWidth="40" maxWidth="1000" id="Xgu-Qw-FQ9">
@@ -806,6 +806,7 @@
                                     <connections>
                                         <binding destination="bR3-4d-4Vy" name="content" keyPath="arrangedObjects" id="k2O-MQ-Yf3"/>
                                         <binding destination="nF1-6k-907" name="sortDescriptors" keyPath="self.beaconSortDescriptors" previousBinding="k2O-MQ-Yf3" id="MLj-O0-Ozs"/>
+                                        <outlet property="delegate" destination="nF1-6k-907" id="bRZ-Y1-bC3"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -820,13 +821,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="1nI-Er-1Q8">
-                            <rect key="frame" x="0.0" y="0.0" width="780" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="780" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="evM-58-jet">
                         <rect key="frame" x="636" y="13" width="130" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="118" id="dng-pu-cZK"/>
                         </constraints>
@@ -837,7 +837,6 @@
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UKN-Ca-y34">
                         <rect key="frame" x="348" y="20" width="84" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Fco-I4-w7L"/>
                         </constraints>
@@ -849,7 +848,6 @@
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="04Y-oF-bK2">
                         <rect key="frame" x="18" y="20" width="326" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Your hardware does not support Bluetooth Low Energy" id="6NZ-xV-atH">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -874,6 +872,9 @@
                     <constraint firstAttribute="trailing" secondItem="evM-58-jet" secondAttribute="trailing" constant="20" symbolic="YES" id="wWc-5u-f8j"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="nF1-6k-907" id="Y8r-2B-fjI"/>
+            </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="xX4-Ph-V2J"/>
     </objects>
