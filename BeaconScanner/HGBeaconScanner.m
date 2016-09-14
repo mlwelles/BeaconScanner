@@ -63,7 +63,11 @@
         NSPipe *outputPipe = [[NSPipe alloc] init];
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = @"/bin/bash";
-        task.arguments = @[ @"-c", @"system_profiler -detailLevel full SPBluetoothDataType | grep 'LMP Version:' | awk '{print $3}'"];
+        if (floor(kCFCoreFoundationVersionNumber) > kCFCoreFoundationVersionNumber10_10) {
+            task.arguments = @[ @"-c", @"system_profiler -detailLevel full SPBluetoothDataType | grep 'LMP Version:' | awk '{print $4}' | tr -d '(' | tr -d ')'"];
+        } else {
+            task.arguments = @[ @"-c", @"system_profiler -detailLevel full SPBluetoothDataType | grep 'LMP Version:' | awk '{print $3}'"];
+        }
         task.standardOutput = outputPipe;
         [task launch];
         [task waitUntilExit];
