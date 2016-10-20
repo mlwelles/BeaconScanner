@@ -41,7 +41,7 @@
 //  Created by Matthew Robinson on 1/11/2013.
 //
 #import "HGBeacon.h"
-#import <IOBluetooth/IOBluetooth.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import "stdint.h"
 #import "EXTScope.h"
 NSString *const HGBeaconAdvertismentManufacturerDataKey = @"kCBAdvDataAppleBeaconKey";

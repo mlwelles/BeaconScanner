@@ -1,4 +1,7 @@
-platform :osx, '10.8'
-pod 'ReactiveCocoa', "~>2.1"
-pod 'BlocksKit', '~>2.2.5'
-pod 'libextobjc'
+target 'Beacon Scanner' do
+  use_frameworks!
+  pod 'ReactiveCocoa'
+  pod 'BlocksKit'
+  pod 'libextobjc'
+end
+

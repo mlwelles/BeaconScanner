@@ -7,7 +7,7 @@
 //
 #import "HGBeaconScanner.h"
 #import <CoreLocation/CoreLocation.h>
-#import <IOBluetooth/IOBluetooth.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import "HGBeacon.h"
 #import "libextobjc/EXTScope.h"
 #import "BlocksKit.h"
