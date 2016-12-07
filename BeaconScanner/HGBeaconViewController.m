@@ -9,8 +9,8 @@
 #import "HGBeaconScanner.h"
 #import "HGBeacon.h"
 #import "ReactiveCocoa/ReactiveCocoa.h"
-#import "BlocksKit.h"
-#import "EXTScope.h"
+#import <BlocksKit/BlocksKit.h>
+#import <libextobjc/EXTScope.h>
 #import "HGBeaconHistory.h"
 #import "HGBluetoothState.h"
 #define HGBeaconTimeToLiveInterval 15
@@ -18,8 +18,23 @@
 @property (strong) RACSignal *housekeepingSignal;
 @property (strong) HGBeaconHistory *beaconHistory;
 @property (strong) HGBeacon *lastSelectedBeacon;
+@property BOOL recordBeacons;
 @end
 @implementation HGBeaconViewController
+
+
+- (IBAction)toggleRecord:(id)sender {
+    _recordBeacons = _recordBeacons ? FALSE : TRUE;
+    NSMenuItem *menuItem = (NSMenuItem*) sender;
+    NSString * newLabel = @"";
+    if (_recordBeacons) {
+        newLabel = @"Stop Recording";
+    } else {
+        newLabel = @"Recording";
+    }
+    [menuItem setTitle:newLabel];
+        
+}
 
 - (void) awakeFromNib {
     [self.tableView setAllowsEmptySelection:YES];
@@ -67,8 +82,8 @@
                     if (age > HGBeaconTimeToLiveInterval) {
                         NSUInteger index = 0;
                         for (HGBeacon *beacon in self.beacons) {
-                            if ([beacon isEqualToBeacon:candidateBeacon]) {
-                                [self removeObjectFromBeaconsAtIndex:index];
+                            if ([beacon isEqualToBeacon:candidateBeacon] && !_recordBeacons) {
+                               [self removeObjectFromBeaconsAtIndex:index];
                                 didChange = YES;
                                 break;
                             }
