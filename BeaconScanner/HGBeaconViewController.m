@@ -70,7 +70,6 @@
                     if (age > HGBeaconTimeToLiveInterval) {
                         NSUInteger index = 0;
                         for (HGBeacon *beacon in self.beacons) {
-                            NSLog(@"is recording: %@", (self.isRecording ? @"true" : @"false"));
                             if ([beacon isEqualToBeacon:candidateBeacon] && ! self.isRecording) {
                                [self removeObjectFromBeaconsAtIndex:index];
                                 didChange = YES;
