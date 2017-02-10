@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface HGBeaconViewController : NSViewController
-@property(nonatomic,strong) NSMutableArray *beacons;
+@property(nonatomic, strong) NSMutableArray *beacons;
 @property (nonatomic, strong) NSArray *beaconSortDescriptors;
-@property(nonatomic,weak) IBOutlet NSButton *scanToggleButton;
-@property(nonatomic,weak) IBOutlet NSTextField *scannerStatusTextField;
-@property(nonatomic,weak) IBOutlet NSTextField *bluetoothStatusTextField;
+@property(nonatomic, weak) IBOutlet NSButton *scanToggleButton;
+@property(nonatomic, weak) IBOutlet NSButton *recordCheckboxButton;
+@property(nonatomic, weak) IBOutlet NSTextField *scannerStatusTextField;
+@property(nonatomic, weak) IBOutlet NSTextField *bluetoothStatusTextField;
 @property(nonatomic, weak) IBOutlet NSTableView *tableView;
 @property(nonatomic, weak) IBOutlet NSArrayController *arrayController;
+
 @end

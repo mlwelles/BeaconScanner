@@ -18,23 +18,11 @@
 @property (strong) RACSignal *housekeepingSignal;
 @property (strong) HGBeaconHistory *beaconHistory;
 @property (strong) HGBeacon *lastSelectedBeacon;
-@property BOOL recordBeacons;
+@property BOOL isRecording;
 @end
 @implementation HGBeaconViewController
 
 
-- (IBAction)toggleRecord:(id)sender {
-    _recordBeacons = _recordBeacons ? FALSE : TRUE;
-    NSMenuItem *menuItem = (NSMenuItem*) sender;
-    NSString * newLabel = @"";
-    if (_recordBeacons) {
-        newLabel = @"Stop Recording";
-    } else {
-        newLabel = @"Recording";
-    }
-    [menuItem setTitle:newLabel];
-        
-}
 
 - (void) awakeFromNib {
     [self.tableView setAllowsEmptySelection:YES];
@@ -82,7 +70,8 @@
                     if (age > HGBeaconTimeToLiveInterval) {
                         NSUInteger index = 0;
                         for (HGBeacon *beacon in self.beacons) {
-                            if ([beacon isEqualToBeacon:candidateBeacon] && !_recordBeacons) {
+                            NSLog(@"is recording: %@", (self.isRecording ? @"true" : @"false"));
+                            if ([beacon isEqualToBeacon:candidateBeacon] && ! self.isRecording) {
                                [self removeObjectFromBeaconsAtIndex:index];
                                 didChange = YES;
                                 break;
@@ -121,6 +110,18 @@
                                        [[NSSortDescriptor alloc] initWithKey:@"lastUpdated" ascending:NO]
                                        ];
         
+        
+
+        [[RACObserve(self, recordCheckboxButton) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSButton *button) {
+            button.state = (self.isRecording ? NSOffState : NSOnState);
+            @strongify(self)
+            button.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSButton *button) {
+                @strongify(self)
+                self.isRecording = !(button.state == NSOnState);
+                return [RACSignal empty];
+            }];
+        }];
+     
         
         // When IB binds the scanToggleButton, set it to toggle the scanning state in the beacon manager on press
         [[RACObserve(self, scanToggleButton) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSButton *button) {

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,6 +23,7 @@
             <connections>
                 <outlet property="arrayController" destination="bR3-4d-4Vy" id="V29-zm-okx"/>
                 <outlet property="bluetoothStatusTextField" destination="04Y-oF-bK2" id="GxW-b2-0bO"/>
+                <outlet property="recordCheckboxButton" destination="WwL-AH-3jH" id="lLp-SB-bgM"/>
                 <outlet property="scanToggleButton" destination="evM-58-jet" id="LeF-zS-nI6"/>
                 <outlet property="scannerStatusTextField" destination="UKN-Ca-y34" id="ZOq-RF-CPi"/>
                 <outlet property="tableView" destination="AH2-px-RsF" id="q1q-H7-yxx"/>
@@ -49,12 +50,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="BeaconScanner" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="Record" id="dZL-xp-pIH" userLabel="Record">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="toggleRecord:" target="nF1-6k-907" id="vTP-f5-z5z"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="About BeaconScanner" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -702,7 +697,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="780" height="364"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="780" height="364"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -711,7 +706,7 @@
                         <rect key="frame" x="-1" y="61" width="782" height="304"/>
                         <clipView key="contentView" id="nH9-IB-6pL">
                             <rect key="frame" x="1" y="0.0" width="780" height="303"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1nI-Er-1Q8" id="AH2-px-RsF">
                                     <rect key="frame" x="0.0" y="0.0" width="780" height="280"/>
@@ -861,11 +856,20 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="WwL-AH-3jH" userLabel="Record checkbox">
+                        <rect key="frame" x="525" y="21" width="111" height="18"/>
+                        <buttonCell key="cell" type="check" title="Show active only" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="edg-Rg-64r">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="WwL-AH-3jH" firstAttribute="centerY" secondItem="evM-58-jet" secondAttribute="centerY" id="52I-fq-j1r"/>
                     <constraint firstItem="UKN-Ca-y34" firstAttribute="leading" secondItem="04Y-oF-bK2" secondAttribute="trailing" constant="8" id="6Uu-9P-cdn"/>
                     <constraint firstAttribute="bottom" secondItem="04Y-oF-bK2" secondAttribute="bottom" constant="20" id="BYY-vK-3zK"/>
                     <constraint firstItem="04Y-oF-bK2" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="CKa-mG-aMo"/>
+                    <constraint firstItem="evM-58-jet" firstAttribute="leading" secondItem="WwL-AH-3jH" secondAttribute="trailing" constant="8" symbolic="YES" id="T2Y-nH-dSA"/>
                     <constraint firstItem="UKN-Ca-y34" firstAttribute="top" secondItem="79K-Zf-kc1" secondAttribute="bottom" constant="24" id="VNE-tM-OuO"/>
                     <constraint firstAttribute="bottom" secondItem="evM-58-jet" secondAttribute="bottom" constant="20" id="ZB9-AA-bFT"/>
                     <constraint firstAttribute="bottom" secondItem="UKN-Ca-y34" secondAttribute="bottom" constant="20" id="ddP-dX-m9o"/>
