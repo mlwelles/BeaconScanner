@@ -9,19 +9,19 @@ A notable absence when Apple added iBeacon support to iOS was a lack of both a c
 
 It provides an easy way to scan for nearby beacons from your Mac. Additionally, the underlying source framework can be used to add iBeacon client support to any other OSX project. 
 
-##How to Install It
+## How to Install It
 
 To install without building from source, first [download the prebuilt archive](https://github.com/mlwelles/BeaconScanner/releases/latest).  Double click the zip to extract, and then double click again to run. 
 
 Once you start the app it'll automatically begin scanning for bluetooth devices.  Any beacons within range will automatically appear and it will continuously update as long as it remains scanning.
 
-##How to Build It
+## How to Build It
 
 Building the app requires [cocoapods](http://cocoapods.org).  Once installed, launch Terminal.app and in the project directory, run "pod install".  When it completes, open *BeaconScanner.xcworkspace*  in Xcode.  The app should then build and run successfully. 
 
 
 
-##How It Works
+## How It Works
 
 
 The iBeacon protocol is relatively simple.  It is a 25 byte payload that is set as the manufacturer data field of a bluetooth LE advertisement.  The format of this message is as follows:
@@ -115,7 +115,7 @@ Following are the relevant stanzas where this happens:
 }
 ```
 
-##Adding Beacon Detection to Your Own Project
+## Adding Beacon Detection to Your Own Project
 
 To add iBeacon support to your own desktop application (at least until the a proper cocoapod is made available), just copy the following four files into your project:  
 
