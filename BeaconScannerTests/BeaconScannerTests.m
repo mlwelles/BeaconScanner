@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "HGBeaconScanner.h"
 #import "HGBeacon.h"
+
 @interface DesktopBeaconTests : XCTestCase
 
 @end
@@ -29,8 +30,21 @@
 
 - (void)testManagerScanningStart
 {
-    [[HGBeaconScanner sharedBeaconScanner] startScanning];
-    XCTAssertTrue([[HGBeaconScanner sharedBeaconScanner] scanning], @"Manager can start scanning");
+    // Give Bluetooth time to initialize
+    HGBeaconScanner *scanner = [HGBeaconScanner sharedBeaconScanner];
+
+    // Brief wait for CBCentralManager to report state
+    NSDate *timeout = [NSDate dateWithTimeIntervalSinceNow:2.0];
+    while (scanner.bluetoothState == nil && [timeout timeIntervalSinceNow] > 0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+
+    // Skip test if Bluetooth state isn't available or isn't powered on
+    XCTSkipIf(scanner.bluetoothState == nil, @"Bluetooth state not available");
+    XCTSkipIf(scanner.bluetoothState != HGGBluetoothStatePoweredOn, @"Bluetooth not powered on");
+
+    [scanner startScanning];
+    XCTAssertTrue(scanner.scanning, @"Manager can start scanning");
 }
 
 - (void)testManagerScanningStop

@@ -535,15 +535,15 @@
 			baseConfigurationReference = 9A6C906BEBF5F431A0D2AD95 /* Pods-Beacon Scanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 453G4TFLMD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconScanner/BeaconScanner-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BeaconScanner/BeaconScanner-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hugeinc.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.welles.BeaconScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -553,15 +553,15 @@
 			baseConfigurationReference = 822302367CD0BC06E4EBAADE /* Pods-Beacon Scanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 453G4TFLMD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconScanner/BeaconScanner-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/BeaconScanner/BeaconScanner-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hugeinc.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.welles.BeaconScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -583,7 +583,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BeaconScannerTests/BeaconScannerTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hugeinc.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.welles.BeaconScanner;
 				PRODUCT_NAME = BeaconScannerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -603,7 +603,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconScanner/BeaconScanner-Prefix.pch";
 				INFOPLIST_FILE = "BeaconScannerTests/BeaconScannerTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hugeinc.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.welles.BeaconScanner;
 				PRODUCT_NAME = BeaconScannerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
