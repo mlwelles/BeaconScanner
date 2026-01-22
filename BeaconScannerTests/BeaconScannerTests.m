@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "HGBeaconScanner.h"
 #import "HGBeacon.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface DesktopBeaconTests : XCTestCase
 
@@ -30,18 +31,24 @@
 
 - (void)testManagerScanningStart
 {
-    // Give Bluetooth time to initialize
     HGBeaconScanner *scanner = [HGBeaconScanner sharedBeaconScanner];
 
-    // Brief wait for CBCentralManager to report state
-    NSDate *timeout = [NSDate dateWithTimeIntervalSinceNow:2.0];
-    while (scanner.bluetoothState == nil && [timeout timeIntervalSinceNow] > 0) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-    }
+    // Use XCTestExpectation with the reactive signal for proper async handling
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Bluetooth state received"];
+    __block NSString *receivedState = nil;
 
-    // Skip test if Bluetooth state isn't available or isn't powered on
-    XCTSkipIf(scanner.bluetoothState == nil, @"Bluetooth state not available");
-    XCTSkipIf(scanner.bluetoothState != HGGBluetoothStatePoweredOn, @"Bluetooth not powered on");
+    // Subscribe to bluetooth state signal - RACReplaySubject will replay last value
+    [[scanner.bluetoothStateSignal take:1] subscribeNext:^(NSString *state) {
+        receivedState = state;
+        [expectation fulfill];
+    }];
+
+    // Wait up to 10 seconds for Bluetooth to report state
+    XCTWaiterResult result = [XCTWaiter waitForExpectations:@[expectation] timeout:10.0];
+
+    // Skip if we didn't receive state in time
+    XCTSkipIf(result != XCTWaiterResultCompleted, @"Bluetooth state not available (timeout)");
+    XCTSkipIf(receivedState != HGGBluetoothStatePoweredOn, @"Bluetooth not powered on (state: %@)", receivedState);
 
     [scanner startScanning];
     XCTAssertTrue(scanner.scanning, @"Manager can start scanning");
