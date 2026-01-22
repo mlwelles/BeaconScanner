@@ -114,7 +114,18 @@ jobs:
           IDENTITY=$(security find-identity -v -p codesigning build.keychain | grep "Developer ID Application" | head -1 | sed 's/.*"\(.*\)".*/\1/')
           echo "Using identity: $IDENTITY"
 
-          # Sign the app with hardened runtime (required for notarization)
+          # Sign all embedded frameworks first (required before signing main app)
+          FRAMEWORKS_DIR="build/export/$APP_NAME.app/Contents/Frameworks"
+          if [ -d "$FRAMEWORKS_DIR" ]; then
+            find "$FRAMEWORKS_DIR" -name "*.framework" -o -name "*.dylib" | while read framework; do
+              echo "Signing: $framework"
+              codesign --force --options runtime --timestamp \
+                --sign "$IDENTITY" \
+                "$framework"
+            done
+          fi
+
+          # Sign the main app with hardened runtime (required for notarization)
           codesign --force --options runtime --timestamp \
             --sign "$IDENTITY" \
             "build/export/$APP_NAME.app"
