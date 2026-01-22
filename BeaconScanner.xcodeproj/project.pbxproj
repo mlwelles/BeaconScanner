@@ -25,9 +25,9 @@
 		679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679835D018FC614900E2E6D5 /* MainMenu.xib */; };
 		67DD56FF1CE39A6800AC5458 /* HGBluetoothState.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DD56FE1CE39A6800AC5458 /* HGBluetoothState.m */; };
 		67F09DA61A168C8C006AB4AD /* HGBeaconHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */; };
+		67HELP000200000000000002 /* BeaconScanner.help in Resources */ = {isa = PBXBuildFile; fileRef = 67HELP000100000000000001 /* BeaconScanner.help */; };
 		8CB1EB1C03F85C6BC44E7953 /* Pods_BeaconScannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679322E4189BD1AF0383A0E4 /* Pods_BeaconScannerTests.framework */; };
 		CFEFC1271DB916E900EF1F52 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEFC1261DB916E900EF1F52 /* CoreBluetooth.framework */; };
-		67HELP000200000000000002 /* BeaconScanner.help in Resources */ = {isa = PBXBuildFile; fileRef = 67HELP000100000000000001 /* BeaconScanner.help */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,12 +74,12 @@
 		67DD56FE1CE39A6800AC5458 /* HGBluetoothState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBluetoothState.m; path = BeaconScanner/HGBluetoothState.m; sourceTree = SOURCE_ROOT; };
 		67F09DA41A168C8C006AB4AD /* HGBeaconHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGBeaconHistory.h; path = BeaconScanner/HGBeaconHistory.h; sourceTree = SOURCE_ROOT; };
 		67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGBeaconHistory.m; path = BeaconScanner/HGBeaconHistory.m; sourceTree = SOURCE_ROOT; };
+		67HELP000100000000000001 /* BeaconScanner.help */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BeaconScanner.help; path = BeaconScanner/BeaconScanner.help; sourceTree = SOURCE_ROOT; };
 		6853233AA0EF71ED59FA5B62 /* Pods_Beacon_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beacon_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		822302367CD0BC06E4EBAADE /* Pods-Beacon Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beacon Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner.release.xcconfig"; sourceTree = "<group>"; };
 		9A6C906BEBF5F431A0D2AD95 /* Pods-Beacon Scanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beacon Scanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner.debug.xcconfig"; sourceTree = "<group>"; };
 		CFEFC1261DB916E900EF1F52 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D6DB55C56AA50598A5767271 /* Pods-BeaconScannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconScannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconScannerTests/Pods-BeaconScannerTests.release.xcconfig"; sourceTree = "<group>"; };
-		67HELP000100000000000001 /* BeaconScanner.help */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BeaconScanner.help; path = BeaconScanner/BeaconScanner.help; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
