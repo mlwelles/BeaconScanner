@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.13</string>
+	<string>1.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -27,10 +27,16 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2014 Huge, Inc. All rights reserved.</string>
+	<string>Copyright © 2026 Michael L. Welles. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>BeaconScanner needs Bluetooth access to detect and display nearby iBeacon devices.</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>BeaconScanner.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>nyc.welles.BeaconScanner.help</string>
 </dict>
 </plist>

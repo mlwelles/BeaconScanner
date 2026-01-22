@@ -4,19 +4,27 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>nyc.welles.BeaconScanner.help</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>BeaconScanner Help</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.0</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>hbwr</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>HPDBookAccessPath</key>
+	<string>index.html</string>
+	<key>HPDBookIndexPath</key>
+	<string>BeaconScanner.helpindex</string>
+	<key>HPDBookTitle</key>
+	<string>BeaconScanner Help</string>
+	<key>HPDBookType</key>
+	<string>3</string>
 </dict>
 </plist>

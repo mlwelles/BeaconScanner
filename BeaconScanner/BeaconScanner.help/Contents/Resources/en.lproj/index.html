@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="AppleTitle" content="BeaconScanner Help">
+    <meta name="AppleIcon" content="BeaconScanner.help/Contents/Resources/shared/icon.png">
+    <meta name="robots" content="anchors">
+    <title>BeaconScanner Help</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #007AFF;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, monospace;
+        }
+        .note {
+            background: #f0f7ff;
+            border-left: 4px solid #007AFF;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>BeaconScanner Help</h1>
+
+    <p>BeaconScanner is a macOS application for detecting and monitoring iBeacon devices via Bluetooth Low Energy (BLE).</p>
+
+    <h2>Getting Started</h2>
+    <ol>
+        <li><strong>Enable Bluetooth</strong> - Ensure Bluetooth is turned on in System Settings.</li>
+        <li><strong>Grant Permission</strong> - When prompted, allow BeaconScanner to use Bluetooth.</li>
+        <li><strong>Start Scanning</strong> - Click the <strong>Start Scanning</strong> button to begin detecting nearby iBeacons.</li>
+    </ol>
+
+    <h2>Understanding the Display</h2>
+    <p>Detected beacons are shown in a table with the following columns:</p>
+
+    <table>
+        <tr>
+            <th>Column</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>UUID</strong></td>
+            <td>The beacon's unique proximity identifier (128-bit)</td>
+        </tr>
+        <tr>
+            <td><strong>Major</strong></td>
+            <td>Group identifier (0-65535), typically represents a location or zone</td>
+        </tr>
+        <tr>
+            <td><strong>Minor</strong></td>
+            <td>Individual identifier (0-65535), typically represents a specific beacon</td>
+        </tr>
+        <tr>
+            <td><strong>RSSI</strong></td>
+            <td>Received Signal Strength Indicator in dBm (closer to 0 = stronger signal)</td>
+        </tr>
+        <tr>
+            <td><strong>Power</strong></td>
+            <td>Calibrated signal strength at 1 meter (used for distance estimation)</td>
+        </tr>
+        <tr>
+            <td><strong>Last Seen</strong></td>
+            <td>Timestamp of the most recent detection</td>
+        </tr>
+    </table>
+
+    <h2>Features</h2>
+
+    <h3>Recording Mode</h3>
+    <p>Enable the <strong>Recording</strong> checkbox to keep beacons in the list even after they go out of range. This is useful for logging all beacons detected during a session.</p>
+
+    <h3>Copy UUID</h3>
+    <p>Select a beacon and press <code>⌘C</code> to copy its UUID to the clipboard.</p>
+
+    <h2>Beacon Timeout</h2>
+    <p>By default, beacons that haven't been detected for 15 seconds are removed from the list (unless Recording mode is enabled).</p>
+
+    <div class="note">
+        <strong>Note:</strong> BeaconScanner requires a Mac with Bluetooth 4.0 (BLE) support. Most Macs from 2012 and later include this hardware.
+    </div>
+
+    <h2>iBeacon Protocol</h2>
+    <p>iBeacon is Apple's protocol for Bluetooth proximity sensing. Each beacon broadcasts:</p>
+    <ul>
+        <li>A <strong>Proximity UUID</strong> identifying the beacon network/owner</li>
+        <li>A <strong>Major</strong> value for grouping beacons (e.g., by store location)</li>
+        <li>A <strong>Minor</strong> value for individual beacon identification</li>
+        <li>A <strong>Measured Power</strong> value for distance calibration</li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>No beacons detected</h3>
+    <ul>
+        <li>Verify Bluetooth is enabled in System Settings</li>
+        <li>Ensure your Mac supports Bluetooth Low Energy (4.0+)</li>
+        <li>Check that nearby iBeacons are powered on and advertising</li>
+        <li>Try moving closer to the beacon</li>
+    </ul>
+
+    <h3>Scanning won't start</h3>
+    <ul>
+        <li>Check that BeaconScanner has Bluetooth permission in System Settings → Privacy & Security → Bluetooth</li>
+        <li>Try quitting and restarting the application</li>
+    </ul>
+
+    <p style="margin-top: 40px; color: #666; font-size: 12px;">
+        © 2026 Michael L. Welles. All rights reserved.
+    </p>
+</body>
+</html>
