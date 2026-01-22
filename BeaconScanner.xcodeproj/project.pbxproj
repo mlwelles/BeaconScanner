@@ -542,6 +542,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CODE_SIGN_ENTITLEMENTS = BeaconScanner/BeaconScanner.entitlements;
 				DEVELOPMENT_TEAM = 453G4TFLMD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconScanner/BeaconScanner-Prefix.pch";
@@ -557,6 +558,7 @@
 			baseConfigurationReference = 822302367CD0BC06E4EBAADE /* Pods-Beacon Scanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BeaconScanner/BeaconScanner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
