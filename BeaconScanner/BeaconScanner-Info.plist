@@ -32,5 +32,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>BeaconScanner needs Bluetooth access to detect and display nearby iBeacon devices.</string>
 </dict>
 </plist>

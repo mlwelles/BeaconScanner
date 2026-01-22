@@ -47,7 +47,7 @@
 }
 
 -(void)startScanning {
-    if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
+    if (self.centralManager.state == CBManagerStatePoweredOn) {
         [self.centralManager scanForPeripheralsWithServices:nil
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];
         self.scanning = YES;
@@ -62,14 +62,15 @@
     dispatch_once(&onceToken, ^{
         NSPipe *outputPipe = [[NSPipe alloc] init];
         NSTask *task = [[NSTask alloc] init];
-        task.launchPath = @"/bin/bash";
+        task.executableURL = [NSURL fileURLWithPath:@"/bin/bash"];
         if (floor(kCFCoreFoundationVersionNumber) > kCFCoreFoundationVersionNumber10_10) {
             task.arguments = @[ @"-c", @"system_profiler -detailLevel full SPBluetoothDataType | grep 'LMP Version:' | awk '{print $4}' | tr -d '(' | tr -d ')'"];
         } else {
             task.arguments = @[ @"-c", @"system_profiler -detailLevel full SPBluetoothDataType | grep 'LMP Version:' | awk '{print $3}'"];
         }
         task.standardOutput = outputPipe;
-        [task launch];
+        NSError *error = nil;
+        [task launchAndReturnError:&error];
         [task waitUntilExit];
         NSData *output = [[outputPipe fileHandleForReading] availableData];
         NSString *outputString = [[[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n"withString:@""];
@@ -86,16 +87,16 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     NSString *state = nil;
     switch (central.state) {
-        case CBCentralManagerStateResetting:
+        case CBManagerStateResetting:
             state = HGGBluetoothStateResetting;
             break;
-        case CBCentralManagerStateUnsupported:
+        case CBManagerStateUnsupported:
             state = HGGBluetoothStateUnsupported;
             break;
-        case CBCentralManagerStateUnauthorized:
+        case CBManagerStateUnauthorized:
             state = HGGBluetoothStateUnauthorized;
             break;
-        case CBCentralManagerStatePoweredOff:
+        case CBManagerStatePoweredOff:
             //LMP version of 0x4 reports itself off, even though its' actually unsupported;
             if ([[self bluetoothLMPVersion] integerValue] < 6) {
                 state = HGGBluetoothStateUnsupported;
@@ -103,13 +104,13 @@
                 state = HGGBluetoothStatePoweredOff;
             }
             break;
-        case CBCentralManagerStatePoweredOn:
+        case CBManagerStatePoweredOn:
             state = HGGBluetoothStatePoweredOn;
             break;
         default:
             state = HGGBluetoothStateUnknown;
             break;
-            
+
     }
     if (state != HGGBluetoothStatePoweredOn) {
         if (self.scanning) {

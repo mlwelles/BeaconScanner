@@ -112,11 +112,11 @@
         
 
         [[RACObserve(self, recordCheckboxButton) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSButton *button) {
-            button.state = (self.isRecording ? NSOffState : NSOnState);
+            button.state = (self.isRecording ? NSControlStateValueOff : NSControlStateValueOn);
             @strongify(self)
             button.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSButton *button) {
                 @strongify(self)
-                self.isRecording = !(button.state == NSOnState);
+                self.isRecording = !(button.state == NSControlStateValueOn);
                 return [RACSignal empty];
             }];
         }];
@@ -214,9 +214,9 @@ didClickTableColumn:(NSTableColumn *)tableColumn {
         return;
     }
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-    [pasteboard declareTypes:@[NSStringPboardType]
+    [pasteboard declareTypes:@[NSPasteboardTypeString]
                owner:nil];
-    [pasteboard setString:beacon.proximityUUID.UUIDString forType:NSStringPboardType];
+    [pasteboard setString:beacon.proximityUUID.UUIDString forType:NSPasteboardTypeString];
 }
 
 #pragma mark - KVO Compliance for beacons

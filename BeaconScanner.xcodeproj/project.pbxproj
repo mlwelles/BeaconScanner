@@ -21,12 +21,11 @@
 		677226AF18FC3D2F00804FDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677226A418FC3D2F00804FDA /* main.m */; };
 		679835D718FC615D00E2E6D5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 679835D318FC615D00E2E6D5 /* Credits.rtf */; };
 		679835D818FC615D00E2E6D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 679835D518FC615D00E2E6D5 /* InfoPlist.strings */; };
-		679835DF18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 679835DB18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist */; };
-		679835E318FC61D300E2E6D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 679835E118FC61D300E2E6D5 /* InfoPlist.strings */; };
 		679835E418FC623200E2E6D5 /* BeaconScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 679835D918FC61A600E2E6D5 /* BeaconScannerTests.m */; };
 		679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679835D018FC614900E2E6D5 /* MainMenu.xib */; };
 		67DD56FF1CE39A6800AC5458 /* HGBluetoothState.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DD56FE1CE39A6800AC5458 /* HGBluetoothState.m */; };
 		67F09DA61A168C8C006AB4AD /* HGBeaconHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */; };
+		8CB1EB1C03F85C6BC44E7953 /* Pods_BeaconScannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679322E4189BD1AF0383A0E4 /* Pods_BeaconScannerTests.framework */; };
 		CFEFC1271DB916E900EF1F52 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEFC1261DB916E900EF1F52 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4067C6A90B05661D489B509E /* Pods-BeaconScannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconScannerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconScannerTests/Pods-BeaconScannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6753158818EF27D30024E9CE /* Beacon Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beacon Scanner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6753158B18EF27D30024E9CE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6753158E18EF27D30024E9CE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -62,6 +62,7 @@
 		677226A218FC3D2F00804FDA /* HGDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGDateValueTransformer.m; path = BeaconScanner/HGDateValueTransformer.m; sourceTree = SOURCE_ROOT; };
 		677226A318FC3D2F00804FDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BeaconScanner/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		677226A418FC3D2F00804FDA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BeaconScanner/main.m; sourceTree = SOURCE_ROOT; };
+		679322E4189BD1AF0383A0E4 /* Pods_BeaconScannerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeaconScannerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		679835D118FC614900E2E6D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = BeaconScanner/Base.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		679835D418FC615D00E2E6D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = BeaconScanner/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
 		679835D618FC615D00E2E6D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = BeaconScanner/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -76,6 +77,7 @@
 		822302367CD0BC06E4EBAADE /* Pods-Beacon Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beacon Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner.release.xcconfig"; sourceTree = "<group>"; };
 		9A6C906BEBF5F431A0D2AD95 /* Pods-Beacon Scanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beacon Scanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner.debug.xcconfig"; sourceTree = "<group>"; };
 		CFEFC1261DB916E900EF1F52 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		D6DB55C56AA50598A5767271 /* Pods-BeaconScannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconScannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconScannerTests/Pods-BeaconScannerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			files = (
 				675315AC18EF27D30024E9CE /* Cocoa.framework in Frameworks */,
 				675315AB18EF27D30024E9CE /* XCTest.framework in Frameworks */,
+				8CB1EB1C03F85C6BC44E7953 /* Pods_BeaconScannerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +109,8 @@
 			children = (
 				9A6C906BEBF5F431A0D2AD95 /* Pods-Beacon Scanner.debug.xcconfig */,
 				822302367CD0BC06E4EBAADE /* Pods-Beacon Scanner.release.xcconfig */,
+				4067C6A90B05661D489B509E /* Pods-BeaconScannerTests.debug.xcconfig */,
+				D6DB55C56AA50598A5767271 /* Pods-BeaconScannerTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 				675315AA18EF27D30024E9CE /* XCTest.framework */,
 				6753158D18EF27D30024E9CE /* Other Frameworks */,
 				6853233AA0EF71ED59FA5B62 /* Pods_Beacon_Scanner.framework */,
+				679322E4189BD1AF0383A0E4 /* Pods_BeaconScannerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,7 +226,6 @@
 				6753158518EF27D30024E9CE /* Frameworks */,
 				6753158618EF27D30024E9CE /* Resources */,
 				011611A44B015773BFC6F747 /* [CP] Embed Pods Frameworks */,
-				970EC7A216DFABF9D45F79CF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +240,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 675315BC18EF27D30024E9CE /* Build configuration list for PBXNativeTarget "BeaconScannerTests" */;
 			buildPhases = (
+				99D5652E450C8B116C738D3F /* [CP] Check Pods Manifest.lock */,
 				675315A518EF27D30024E9CE /* Sources */,
 				675315A618EF27D30024E9CE /* Frameworks */,
 				675315A718EF27D30024E9CE /* Resources */,
@@ -293,8 +299,6 @@
 			files = (
 				679835E518FC639E00E2E6D5 /* MainMenu.xib in Resources */,
 				677226AE18FC3D2F00804FDA /* Images.xcassets in Resources */,
-				679835E318FC61D300E2E6D5 /* InfoPlist.strings in Resources */,
-				679835DF18FC61C400E2E6D5 /* BeaconScannerTests-Info.plist in Resources */,
 				679835D718FC615D00E2E6D5 /* Credits.rtf in Resources */,
 				679835D818FC615D00E2E6D5 /* InfoPlist.strings in Resources */,
 			);
@@ -316,13 +320,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/libextobjc/libextobjc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libextobjc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21DCA0098D292027F2690985 /* [CP] Check Pods Manifest.lock */ = {
@@ -331,28 +342,38 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Beacon Scanner-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		970EC7A216DFABF9D45F79CF /* [CP] Copy Pods Resources */ = {
+		99D5652E450C8B116C738D3F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeaconScannerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -466,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -504,7 +525,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -547,6 +568,7 @@
 		};
 		675315BD18EF27D30024E9CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4067C6A90B05661D489B509E /* Pods-BeaconScannerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Beacon Scanner.app/Contents/MacOS/Beacon Scanner";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -570,6 +592,7 @@
 		};
 		675315BE18EF27D30024E9CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6DB55C56AA50598A5767271 /* Pods-BeaconScannerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Beacon Scanner.app/Contents/MacOS/Beacon Scanner";
 				COMBINE_HIDPI_IMAGES = YES;
