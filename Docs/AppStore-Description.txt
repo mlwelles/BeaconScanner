@@ -1,0 +1,36 @@
+Beacon Scanner is a powerful utility for detecting and monitoring iBeacon devices from your Mac.
+
+SCAN FOR NEARBY BEACONS
+Instantly detect all iBeacon devices broadcasting within Bluetooth range. Beacon Scanner continuously monitors for new beacons and displays them in real-time as they appear.
+
+DETAILED BEACON INFORMATION
+View comprehensive details for each detected beacon:
+• Proximity UUID - The unique identifier for the beacon
+• Major & Minor values - Used for beacon identification and grouping
+• RSSI signal strength - Monitor signal quality in real-time
+• Last update timestamp - Track when each beacon was last seen
+
+REAL-TIME MONITORING
+Watch as beacon data updates live. Signal strength and timestamps refresh continuously, giving you an accurate picture of the Bluetooth environment around you.
+
+SIMPLE & INTUITIVE
+Start scanning with a single click. The clean, native macOS interface makes it easy to monitor beacons without any complex setup.
+
+PERFECT FOR DEVELOPERS & TESTERS
+• Test your iBeacon deployments
+• Verify beacon configurations
+• Debug proximity-based applications
+• Monitor beacon signal coverage
+
+BUILT FOR macOS
+Beacon Scanner is a native macOS application designed to integrate seamlessly with your Mac. It uses Core Bluetooth for reliable, low-energy beacon detection.
+
+WHAT ARE iBEACONS?
+iBeacons are small Bluetooth Low Energy (BLE) transmitters that broadcast a unique identifier. They're used for indoor positioning, proximity marketing, asset tracking, and location-aware applications. While iOS has built-in iBeacon support, macOS previously lacked scanning utilities — Beacon Scanner fills that gap.
+
+REQUIREMENTS
+• macOS 10.13 or later
+• Bluetooth 4.0 (BLE) support
+• No additional hardware required
+
+Open source and free to use. Visit our GitHub repository for more information and to contribute.

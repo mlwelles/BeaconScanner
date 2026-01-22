@@ -1,0 +1,1 @@
+Detect and monitor iBeacon devices from your Mac. View UUID, Major, Minor, and signal strength in real-time.
