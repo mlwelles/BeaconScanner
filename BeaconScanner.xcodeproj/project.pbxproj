@@ -27,6 +27,7 @@
 		67F09DA61A168C8C006AB4AD /* HGBeaconHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F09DA51A168C8C006AB4AD /* HGBeaconHistory.m */; };
 		8CB1EB1C03F85C6BC44E7953 /* Pods_BeaconScannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679322E4189BD1AF0383A0E4 /* Pods_BeaconScannerTests.framework */; };
 		CFEFC1271DB916E900EF1F52 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEFC1261DB916E900EF1F52 /* CoreBluetooth.framework */; };
+		67HELP000200000000000002 /* BeaconScanner.help in Resources */ = {isa = PBXBuildFile; fileRef = 67HELP000100000000000001 /* BeaconScanner.help */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		9A6C906BEBF5F431A0D2AD95 /* Pods-Beacon Scanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beacon Scanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beacon Scanner/Pods-Beacon Scanner.debug.xcconfig"; sourceTree = "<group>"; };
 		CFEFC1261DB916E900EF1F52 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D6DB55C56AA50598A5767271 /* Pods-BeaconScannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeaconScannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeaconScannerTests/Pods-BeaconScannerTests.release.xcconfig"; sourceTree = "<group>"; };
+		67HELP000100000000000001 /* BeaconScanner.help */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BeaconScanner.help; path = BeaconScanner/BeaconScanner.help; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				6772269218FC3D2F00804FDA /* BeaconScanner-Info.plist */,
 				6772269318FC3D2F00804FDA /* BeaconScanner-Prefix.pch */,
 				677226A418FC3D2F00804FDA /* main.m */,
+				67HELP000100000000000001 /* BeaconScanner.help */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				677226AE18FC3D2F00804FDA /* Images.xcassets in Resources */,
 				679835D718FC615D00E2E6D5 /* Credits.rtf in Resources */,
 				679835D818FC615D00E2E6D5 /* InfoPlist.strings in Resources */,
+				67HELP000200000000000002 /* BeaconScanner.help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,194 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  SCHEME: BeaconScanner
+  WORKSPACE: BeaconScanner.xcworkspace
+  APP_NAME: Beacon Scanner
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build, Sign, Notarize & Release
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Install CocoaPods
+        run: |
+          gem install cocoapods
+          pod install
+
+      - name: Build Archive
+        run: |
+          xcodebuild archive \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -archivePath "build/$APP_NAME.xcarchive" \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Export App
+        run: |
+          # Create export options plist for unsigned export
+          cat > ExportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>mac-application</string>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>signingCertificate</key>
+              <string>-</string>
+          </dict>
+          </plist>
+          EOF
+
+          # Export the archive to an app bundle
+          xcodebuild -exportArchive \
+            -archivePath "build/$APP_NAME.xcarchive" \
+            -exportPath "build/export" \
+            -exportOptionsPlist ExportOptions.plist \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO || true
+
+          # Fallback: copy from archive if export fails
+          if [ ! -d "build/export/$APP_NAME.app" ]; then
+            mkdir -p "build/export"
+            cp -R "build/$APP_NAME.xcarchive/Products/Applications/$APP_NAME.app" "build/export/"
+          fi
+
+          # Verify app exists
+          ls -la "build/export/"
+
+      - name: Import Certificate
+        env:
+          CERTIFICATE_P12: ${{ secrets.APPLE_CERTIFICATE_P12 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        run: |
+          # Decode certificate
+          echo "$CERTIFICATE_P12" | base64 --decode > certificate.p12
+
+          # Create temporary keychain
+          security create-keychain -p "temppass" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "temppass" build.keychain
+          security set-keychain-settings -t 3600 -u build.keychain
+
+          # Import certificate
+          security import certificate.p12 -k build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign -T /usr/bin/productsign
+
+          # Allow codesign to access the keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "temppass" build.keychain
+
+          # List available signing identities
+          security find-identity -v -p codesigning build.keychain
+
+          # Clean up
+          rm certificate.p12
+
+      - name: Code Sign App
+        env:
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # Find the Developer ID Application certificate
+          IDENTITY=$(security find-identity -v -p codesigning build.keychain | grep "Developer ID Application" | head -1 | sed 's/.*"\(.*\)".*/\1/')
+          echo "Using identity: $IDENTITY"
+
+          # Sign the app with hardened runtime (required for notarization)
+          codesign --force --options runtime --timestamp \
+            --sign "$IDENTITY" \
+            "build/export/$APP_NAME.app"
+
+          # Verify signature
+          codesign --verify --verbose "build/export/$APP_NAME.app"
+
+      - name: Notarize App
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # Create zip for notarization
+          ditto -c -k --keepParent "build/export/$APP_NAME.app" "build/notarize.zip"
+
+          # Submit for notarization
+          xcrun notarytool submit "build/notarize.zip" \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_APP_PASSWORD" \
+            --team-id "$TEAM_ID" \
+            --wait
+
+          # Staple the notarization ticket
+          xcrun stapler staple "build/export/$APP_NAME.app"
+
+          # Verify stapling
+          xcrun stapler validate "build/export/$APP_NAME.app"
+
+          # Clean up
+          rm "build/notarize.zip"
+
+      - name: Create DMG
+        run: |
+          # Create a temporary directory for DMG contents
+          mkdir -p dmg_contents
+          cp -R "build/export/$APP_NAME.app" dmg_contents/
+
+          # Create a symlink to Applications folder
+          ln -s /Applications dmg_contents/Applications
+
+          # Create the DMG
+          hdiutil create -volname "$APP_NAME" \
+            -srcfolder dmg_contents \
+            -ov -format UDZO \
+            "build/$APP_NAME-${{ github.ref_name }}.dmg"
+
+      - name: Create ZIP
+        run: |
+          cd build/export
+          ditto -c -k --keepParent "$APP_NAME.app" "../$APP_NAME-${{ github.ref_name }}.zip"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ env.APP_NAME }} ${{ github.ref_name }}
+          body: |
+            ## ${{ env.APP_NAME }} ${{ github.ref_name }}
+
+            ### Installation
+            1. Download `${{ env.APP_NAME }}-${{ github.ref_name }}.dmg`
+            2. Open the DMG and drag ${{ env.APP_NAME }} to your Applications folder
+            3. Launch ${{ env.APP_NAME }} from Applications
+
+            ### Requirements
+            - macOS 10.13 or later
+            - Bluetooth 4.0 (BLE) support
+
+            ### What's New
+            See commit history for details.
+          files: |
+            build/${{ env.APP_NAME }}-${{ github.ref_name }}.dmg
+            build/${{ env.APP_NAME }}-${{ github.ref_name }}.zip
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

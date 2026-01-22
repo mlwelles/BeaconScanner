@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  SCHEME: BeaconScanner
+  WORKSPACE: BeaconScanner.xcworkspace
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Install CocoaPods
+        run: |
+          gem install cocoapods
+          pod install
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -destination 'platform=macOS' \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Run Tests
+        run: |
+          xcodebuild test \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -destination 'platform=macOS' \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO

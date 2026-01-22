@@ -34,5 +34,9 @@
 	<string>NSApplication</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>BeaconScanner needs Bluetooth access to detect and display nearby iBeacon devices.</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>BeaconScanner.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>nyc.welles.BeaconScanner.help</string>
 </dict>
 </plist>
